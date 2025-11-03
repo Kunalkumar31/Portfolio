@@ -79,16 +79,13 @@ export default function Navbar() {
                             Contact
                         </Link>
                         <a
-                            href="/Kunal-cv-Shared.pdf"
-                            target="_blank"
-                            rel="noopener noreferrer"
+                            href="/kunal-cv-Shared.pdf"
+                            download
                             className="px-3 py-1 border rounded hover:bg-gray-100 dark:hover:bg-gray-800 transition"
-                          onClick={(e) => { e.preventDefault(); setIsOpen(false); }}
-
+                            onClick={() => setIsOpen(false)}
                         >
                             Resume
                         </a>
-
                         <ThemeToggle />
                     </div>
                 </motion.div>
