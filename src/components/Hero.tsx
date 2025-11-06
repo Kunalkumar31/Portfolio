@@ -46,7 +46,7 @@ export default function Hero() {
 
       {/* Profile Image */}
       <motion.img
-        src="/PS_PIC.png"
+        src="/Me_P.png"
         alt="Kunal Kumar"
         className="w-28 h-28 sm:w-32 sm:h-32 md:w-40 md:h-40 rounded-full border-4 border-indigo-600 shadow-lg relative z-10 max-w-full"
         initial={{ scale: 0 }}
