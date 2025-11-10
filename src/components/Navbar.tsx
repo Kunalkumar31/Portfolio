@@ -40,7 +40,9 @@ export default function Navbar() {
                         Contact
                     </Link>
                     <a
-                        href="/Kunal-cv-Shared.pdf"
+                        href="/KunalKumar_CV.pdf"
+                        target="_blank"
+                        rel="noopener noreferrer"
                         className="px-3 py-1 border rounded hover:bg-gray-100 dark:hover:bg-gray-800 transition"
                     >
                         Resume

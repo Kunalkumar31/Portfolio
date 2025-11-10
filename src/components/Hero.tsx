@@ -110,7 +110,7 @@ export default function Hero() {
         </Link>
 
         <a
-          href="/kunal-cv-Shared.pdf"
+          href="/KunalKumar_CV.pdf"
           download
           className="px-6 py-3 flex items-center justify-center gap-2 border rounded-lg shadow-md hover:bg-gray-100 dark:hover:bg-gray-800 transition active:scale-95 w-full sm:w-auto"
         >
