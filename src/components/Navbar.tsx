@@ -44,6 +44,7 @@ export default function Navbar() {
                         target="_blank"
                         rel="noopener noreferrer"
                         className="px-3 py-1 border rounded hover:bg-gray-100 dark:hover:bg-gray-800 transition"
+                        onClick={() => setIsOpen(false)}
                     >
                         Resume
                     </a>
@@ -81,7 +82,7 @@ export default function Navbar() {
                             Contact
                         </Link>
                         <a
-                            href="/kunal-cv-Shared.pdf"
+                            href="/KunalKumar_CV.pdf"
                             download
                             className="px-3 py-1 border rounded hover:bg-gray-100 dark:hover:bg-gray-800 transition"
                             onClick={() => setIsOpen(false)}
