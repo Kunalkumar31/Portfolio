@@ -8,6 +8,7 @@ export default function Contact() {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [message, setMessage] = useState("");
+  const [submittedName, setSubmittedName] = useState("");
   const [errors, setErrors] = useState<{ name?: string; email?: string; message?: string }>({});
   const [status, setStatus] = useState<"idle" | "sending" | "sent" | "error">("idle");
 
@@ -39,12 +40,16 @@ export default function Contact() {
       });
 
       if (res.ok) {
+        setSubmittedName(name); 
         setStatus("sent");
+
         setName("");
         setEmail("");
         setMessage("");
+
         setTimeout(() => router.push("/"), 2000);
-      } else {
+      }
+      else {
         setStatus("error");
       }
     } catch (error) {
@@ -89,9 +94,8 @@ export default function Contact() {
             value={name}
             onChange={(e) => setName(e.target.value)}
             placeholder="Your Name"
-            className={`w-full p-3 sm:p-4 text-sm sm:text-base border rounded-md focus:outline-none focus:ring-2 ${
-              errors.name ? "border-red-500 focus:ring-red-500" : "border-gray-300 dark:border-gray-600 focus:ring-indigo-500"
-            } dark:bg-gray-700 dark:text-white transition`}
+            className={`w-full p-3 sm:p-4 text-sm sm:text-base border rounded-md focus:outline-none focus:ring-2 ${errors.name ? "border-red-500 focus:ring-red-500" : "border-gray-300 dark:border-gray-600 focus:ring-indigo-500"
+              } dark:bg-gray-700 dark:text-white transition`}
           />
           {errors.name && <p className="text-red-500 text-xs mt-1">{errors.name}</p>}
         </div>
@@ -103,9 +107,8 @@ export default function Contact() {
             value={email}
             onChange={(e) => setEmail(e.target.value)}
             placeholder="Email"
-            className={`w-full p-3 sm:p-4 text-sm sm:text-base border rounded-md focus:outline-none focus:ring-2 ${
-              errors.email ? "border-red-500 focus:ring-red-500" : "border-gray-300 dark:border-gray-600 focus:ring-indigo-500"
-            } dark:bg-gray-700 dark:text-white transition`}
+            className={`w-full p-3 sm:p-4 text-sm sm:text-base border rounded-md focus:outline-none focus:ring-2 ${errors.email ? "border-red-500 focus:ring-red-500" : "border-gray-300 dark:border-gray-600 focus:ring-indigo-500"
+              } dark:bg-gray-700 dark:text-white transition`}
           />
           {errors.email && <p className="text-red-500 text-xs mt-1">{errors.email}</p>}
         </div>
@@ -117,9 +120,8 @@ export default function Contact() {
             onChange={(e) => setMessage(e.target.value)}
             rows={5}
             placeholder="Message"
-            className={`w-full p-3 sm:p-4 text-sm sm:text-base border rounded-md focus:outline-none focus:ring-2 resize-none ${
-              errors.message ? "border-red-500 focus:ring-red-500" : "border-gray-300 dark:border-gray-600 focus:ring-indigo-500"
-            } dark:bg-gray-700 dark:text-white transition`}
+            className={`w-full p-3 sm:p-4 text-sm sm:text-base border rounded-md focus:outline-none focus:ring-2 resize-none ${errors.message ? "border-red-500 focus:ring-red-500" : "border-gray-300 dark:border-gray-600 focus:ring-indigo-500"
+              } dark:bg-gray-700 dark:text-white transition`}
           />
           {errors.message && <p className="text-red-500 text-xs mt-1">{errors.message}</p>}
         </div>
@@ -148,7 +150,7 @@ export default function Contact() {
                 Your message has been sent successfully!
               </motion.p>
               <motion.p className="text-green-600 dark:text-green-200 text-xs sm:text-sm mt-1">
-                Thank you, {name || "friend"}, for reaching out. Redirecting to home page… ✨
+                Thank you, {submittedName || "friend"}, for reaching out.
               </motion.p>
             </motion.div>
           )}

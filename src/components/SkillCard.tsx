@@ -2,7 +2,7 @@ import { FC, ElementType } from "react"
 
 type SkillCardProps = {
   name: string
-  icon: ElementType // React component (like from lucide-react)
+  icon: ElementType 
 }
 
 const SkillCard: FC<SkillCardProps> = ({ name, icon: Icon }) => {

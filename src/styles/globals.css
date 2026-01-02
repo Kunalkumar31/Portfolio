@@ -8,15 +8,19 @@ height: 100%;
 }
 
 body {
-@apply bg-white text-gray-800 antialiased;
+  @apply bg-white text-gray-800 antialiased;
+  font-smoothing: antialiased;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
+
 
 .dark body {
 @apply bg-gray-900 text-gray-100;
 }
 
 /* Add to globals.css or tailwind.css for animation */
-@keyframes text-slide {
+/* @keyframes text-slide {
   0%, 100% { background-position: 0% 50%; }
   50% { background-position: 100% 50%; }
 }
@@ -24,7 +28,7 @@ body {
 .animate-text {
   background-size: 200% 200%;
   animation: text-slide 4s ease infinite;
-}
+} */
 
 @theme inline {
 --radius-sm: calc(var(--radius) - 4px);
@@ -143,7 +147,7 @@ body {
 }
 
 /* Gradient shimmer animation */
-@keyframes gradient {
+/* @keyframes gradient {
   0% { background-position: 0% 50%; }
   50% { background-position: 100% 50%; }
   100% { background-position: 0% 50%; }
@@ -151,16 +155,17 @@ body {
 .animate-gradient {
   background-size: 200% 200%;
   animation: gradient 5s ease infinite;
-}
+} */
 
 /* Typing effect for roles */
 .typing-text {
   overflow: hidden;
-  border-right: .15em solid #6366f1; /* Indigo cursor */
+  border-right: .15em solid currentColor;
   white-space: nowrap;
   width: 0;
   animation: typing 2s steps(30, end) forwards, blink .75s step-end infinite;
 }
+
 @keyframes typing {
   from { width: 0 }
   to { width: 100% }

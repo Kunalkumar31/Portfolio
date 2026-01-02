@@ -17,10 +17,10 @@ export default function About() {
     };
 
     return (
-        <section className="max-w-7xl mx-auto py-16 px-5 md:px-8 lg:px-10">
+        <section className="max-w-7xl mx-auto py-16 px-5 md:px-8 lg:px-10 font-mono">
             {/* Heading */}
             <motion.h1
-                className="text-4xl sm:text-5xl md:text-6xl font-extrabold text-center bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 bg-clip-text text-transparent"
+                className="text-4xl sm:text-5xl md:text-6xl font-extrabold text-center text-gray-900 dark:text-gray-100"
                 initial="hidden"
                 animate="show"
                 variants={fadeUp}
@@ -36,24 +36,14 @@ export default function About() {
                 variants={fadeUp}
             >
                 Hi 👋 I’m{" "}
-                <span className="font-semibold text-indigo-600 dark:text-indigo-400">
-                    Kunal Kumar
-                </span>
-                , a{" "}
-                <span className="font-semibold text-purple-600 dark:text-purple-400">
-                    Full Stack Developer
-                </span>{" "}
+                <span className="font-semibold text-indigo-600 dark:text-indigo-400">Kunal Kumar</span>,
+                a{" "}
+                <span className="font-semibold text-purple-600 dark:text-purple-400">Full Stack Developer</span>{" "}
                 skilled in{" "}
-                <span className="font-semibold text-pink-600 dark:text-pink-400">
-                    MERN & Next.js
-                </span>
-                . I love building{" "}
-                <span className="font-bold">
-                    interactive, scalable, and impactful digital solutions
-                </span>{" "}
-                while exploring{" "}
-                <span className="font-semibold text-indigo-400">AI-powered apps</span>{" "}
-                that make technology smarter.
+                <span className="font-semibold text-pink-600 dark:text-pink-400">MERN & Next.js</span>.
+                I specialize in <span className="font-bold">robust, scalable, and high-performance applications</span>
+                with a focus on <span className="font-semibold text-indigo-400">AI integrations</span> and real-time systems.
+                I enjoy solving complex problems and delivering solutions that create measurable impact for businesses and users.
             </motion.p>
 
             {/* Goal Line */}
@@ -63,23 +53,23 @@ export default function About() {
                 animate="show"
                 variants={fadeUp}
             >
-                ✨ My mission is simple: build apps that blend{" "}
+                 My mission: Develop applications that combine{" "}
                 <span className="font-semibold">performance</span>,{" "}
-                <span className="font-semibold">creativity</span>, and{" "}
-                <span className="font-semibold">AI-driven innovation</span>.
+                <span className="font-semibold">innovation</span>, and{" "}
+                <span className="font-semibold">AI-driven intelligence</span>, while ensuring clean, maintainable, and scalable code.
             </motion.p>
 
             {/* Highlight Cards */}
             <div className="mt-14 grid gap-6 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 cursor-pointer">
                 {[
-                    { icon: "⚡", title: "Fast", desc: "Optimized apps with performance in mind." },
-                    { icon: "💡", title: "Creative", desc: "Modern, clean, and engaging UI/UX." },
-                    { icon: "🚀", title: "Scalable", desc: "Apps built for growth and reliability." },
-                    { icon: "🤖", title: "AI-Driven", desc: "Integrating AI for smarter experiences." },
-                    { icon: "🔒", title: "Secure", desc: "Strong authentication & data protection." },
-                    { icon: "📱", title: "Responsive", desc: "Seamless across all devices." },
-                    { icon: "🛡️", title: "Reliable", desc: "Robust apps tested for stability." },
-                    { icon: "🧩", title: "Maintainable", desc: "Clean, modular, and scalable code." },
+                    { icon: "⚡", title: "Fast", desc: "Optimized applications with efficient, high-performance solutions." },
+                    { icon: "💡", title: "Creative", desc: "Modern, intuitive, and user-friendly UI/UX design." },
+                    { icon: "🚀", title: "Scalable", desc: "Applications designed for growth and long-term reliability." },
+                    { icon: "🤖", title: "AI-Driven", desc: "Smart integrations with AI to enhance functionality and decision-making." },
+                    { icon: "🔒", title: "Secure", desc: "Strong authentication, data protection, and compliance best practices." },
+                    { icon: "📱", title: "Responsive", desc: "Seamless experience across all devices and screen sizes." },
+                    { icon: "🛡️", title: "Reliable", desc: "Thoroughly tested applications for stability and uptime." },
+                    { icon: "🧩", title: "Maintainable", desc: "Clean, modular code that is easy to update and extend." },
                 ].map((item, i) => (
                     <motion.div
                         key={item.title}
@@ -90,24 +80,15 @@ export default function About() {
                         variants={fadeUp}
                     >
                         <div className="text-4xl mb-3">{item.icon}</div>
-                        <h2 className="text-xl sm:text-2xl font-bold text-gray-900 dark:text-white mb-2">
-                            {item.title}
-                        </h2>
-                        <p className="text-gray-600 dark:text-gray-300 text-sm sm:text-base">
-                            {item.desc}
-                        </p>
+                        <h2 className="text-xl sm:text-2xl font-bold text-gray-900 dark:text-white mb-2">{item.title}</h2>
+                        <p className="text-gray-600 dark:text-gray-300 text-sm sm:text-base">{item.desc}</p>
                     </motion.div>
                 ))}
             </div>
 
             {/* Work Experience */}
-            <motion.div
-                className="mt-20"
-                initial="hidden"
-                animate="show"
-                variants={fadeUp}
-            >
-                <h2 className="text-3xl sm:text-4xl font-bold text-center mb-10 bg-gradient-to-r from-purple-500 to-pink-500 bg-clip-text text-transparent">
+            <motion.div className="mt-20" initial="hidden" animate="show" variants={fadeUp}>
+                <h2 className="text-3xl sm:text-4xl font-bold text-center mb-10 text-gray-900 dark:text-gray-100">
                     Work Experience
                 </h2>
 
@@ -118,44 +99,36 @@ export default function About() {
                             company: "CepiaLabs PVT. LTD.",
                             location: "Noida, Uttar Pradesh",
                             period: "Aug 2025 – Present",
-                            desc: "Contributing to the design and development of scalable web platforms using React.js, Node.js, and MongoDB. Enhanced system performance by implementing optimized APIs and collaborated with cross-functional teams to deliver data-driven, user-centric solutions.",
+                            desc: "Designed and developed scalable web platforms using React.js, Node.js, and MongoDB. Improved API performance and system efficiency by 30%. Collaborated with cross-functional teams to deliver user-centric, data-driven solutions.",
                         },
                         {
                             role: "Full Stack Developer Intern",
                             company: "Code Core Global",
                             location: "Jaipur, Rajasthan",
                             period: "May 2025 – Aug 2025",
-                            desc: "Developed and maintained MERN-based applications with Next.js, Socket.io, and Tailwind CSS. Focused on improving load times, UI responsiveness, and real-time communication features for a seamless user experience.",
+                            desc: "Built MERN and Next.js applications with real-time features using Socket.io. Enhanced UI responsiveness, page load times, and overall user experience.",
                         },
                         {
                             role: "Associate L1 Intern",
                             company: "INFOTECT SOLUTIONS",
                             location: "Bengaluru, Karnataka",
                             period: "Feb 2025 – May 2025",
-                            desc: "Assisted in building full-stack applications using the MERN stack with AI-powered components. Implemented secure RESTful APIs, optimized backend workflows, and enhanced front-end usability through responsive design practices.",
+                            desc: "Assisted in full-stack development with AI components and secure REST APIs. Optimized backend workflows and improved frontend usability with responsive designs.",
                         },
                     ].map((exp, i) => (
                         <motion.div
-                            key={exp.company}
+                            key={i}
                             className="p-6 sm:p-8 bg-white dark:bg-gray-800 rounded-2xl shadow-lg border border-gray-200 dark:border-gray-700 hover:shadow-2xl transition transform hover:-translate-y-2"
                             custom={i}
                             initial="hidden"
                             animate="show"
                             variants={fadeUp}
                         >
-                            <h3 className="text-xl sm:text-2xl font-semibold text-indigo-600 dark:text-indigo-400">
-                                {exp.role}
-                            </h3>
-                            <p className="text-gray-700 dark:text-gray-300 font-medium mt-1">
-                                {exp.company}
-                            </p>
-                            <p className="text-gray-500 dark:text-gray-400 text-sm">
-                                {exp.location}
-                            </p>
+                            <h3 className="text-xl sm:text-2xl font-semibold text-indigo-600 dark:text-indigo-400">{exp.role}</h3>
+                            <p className="text-gray-700 dark:text-gray-300 font-medium mt-1">{exp.company}</p>
+                            <p className="text-gray-500 dark:text-gray-400 text-sm">{exp.location}</p>
                             <p className="text-gray-400 text-sm mt-1">{exp.period}</p>
-                            <p className="mt-3 text-gray-600 dark:text-gray-300 text-sm sm:text-base leading-relaxed">
-                                {exp.desc}
-                            </p>
+                            <p className="mt-3 text-gray-600 dark:text-gray-300 text-sm sm:text-base leading-relaxed">{exp.desc}</p>
                         </motion.div>
                     ))}
                 </div>
@@ -175,7 +148,7 @@ export default function About() {
                 ].map((stat, i) => (
                     <motion.div
                         key={stat.label}
-                        className="p-6 rounded-xl bg-gradient-to-r from-indigo-500 via-purple-500 to-pink-500 text-white shadow-lg"
+                        className="p-6 rounded-xl bg-gray-900 dark:bg-gray-700 text-white shadow-lg"
                         custom={i + 7}
                         initial="hidden"
                         animate="show"
@@ -194,12 +167,7 @@ export default function About() {
             </div>
 
             {/* Call-to-action */}
-            <motion.div
-                className="mt-16 text-center"
-                initial="hidden"
-                animate="show"
-                variants={fadeUp}
-            >
+            <motion.div className="mt-16 text-center" initial="hidden" animate="show" variants={fadeUp}>
                 <a
                     href="/contact"
                     className="inline-block px-8 py-3 text-base sm:text-lg bg-indigo-600 text-white rounded-xl shadow-md hover:bg-indigo-700 hover:shadow-xl transition transform hover:scale-110"
