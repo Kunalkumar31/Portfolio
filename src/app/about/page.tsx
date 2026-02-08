@@ -53,7 +53,7 @@ export default function About() {
                 animate="show"
                 variants={fadeUp}
             >
-                 My mission: Develop applications that combine{" "}
+                My mission: Develop applications that combine{" "}
                 <span className="font-semibold">performance</span>,{" "}
                 <span className="font-semibold">innovation</span>, and{" "}
                 <span className="font-semibold">AI-driven intelligence</span>, while ensuring clean, maintainable, and scalable code.

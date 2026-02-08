@@ -6,6 +6,7 @@ import { motion, Variants, AnimatePresence } from "framer-motion";
 import { gsap } from "gsap";
 import Link from "next/link";
 import { Github, Linkedin, Mail, Code, FileText } from "lucide-react";
+import { FiZap, FiCpu, FiActivity, FiTarget } from "react-icons/fi";
 
 export default function Hero() {
   const roles = [
@@ -110,17 +111,21 @@ export default function Hero() {
           animate="show"
         >
           <motion.p variants={item}>
-            🚀 Full Stack Developer with 1+ years of experience in MERN & Next.js, building scalable, real-time, and AI-powered applications.
+            Full Stack Developer with 1+ years of experience in MERN & Next.js, delivering scalable, real-time, production-ready applications.
           </motion.p>
+
           <motion.p variants={item}>
-            💡 Expert in REST/MySQL APIs, WebSockets, MongoDB, and cloud deployment (AWS & Docker) for efficient, robust solutions.
+            Specialized in REST/MySQL APIs, WebSockets, MongoDB architecture, and cloud deployment using AWS & Docker.
           </motion.p>
+
           <motion.p variants={item}>
-            🤖 Passionate about AI-driven tools using OpenAI API, including chatbots, recommendation engines, and automated workflows.
+            Hands-on experience building AI-powered tools with OpenAI API, including intelligent chatbots and recommendation systems.
           </motion.p>
+
           <motion.p variants={item}>
-            🎯 Strong problem-solving skills, delivering high-quality results, and collaborating effectively in cross-functional teams.
+            Strong problem-solving mindset with a track record of delivering high-quality solutions in collaborative teams.
           </motion.p>
+
         </motion.div>
 
         {/* Buttons */}
