@@ -3,13 +3,15 @@
 import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { useRouter } from "next/navigation";
+import { Send, Loader2, PartyPopper, CircleX } from "lucide-react";
 
 export default function Contact() {
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
+  const [subject, setSubject] = useState("");
   const [message, setMessage] = useState("");
   const [submittedName, setSubmittedName] = useState("");
-  const [errors, setErrors] = useState<{ name?: string; email?: string; message?: string }>({});
+  const [errors, setErrors] = useState<{ name?: string; email?: string; subject?: string; message?: string }>({});
   const [status, setStatus] = useState<"idle" | "sending" | "sent" | "error">("idle");
 
   const router = useRouter();
@@ -18,6 +20,7 @@ export default function Contact() {
     const newErrors: typeof errors = {};
     if (!name.trim()) newErrors.name = "Name is required.";
     if (!email.trim()) newErrors.email = "Email is required.";
+    if (!subject.trim()) newErrors.subject = "Subject is required.";
     else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email)) newErrors.email = "Invalid email format.";
     if (!message.trim()) newErrors.message = "Message cannot be empty.";
     else if (message.trim().length < 10) newErrors.message = "Message should be at least 10 characters.";
@@ -40,7 +43,7 @@ export default function Contact() {
       });
 
       if (res.ok) {
-        setSubmittedName(name); 
+        setSubmittedName(name);
         setStatus("sent");
 
         setName("");
@@ -82,6 +85,7 @@ export default function Contact() {
 
       {/* Form */}
       <motion.form
+        method="POST"
         onSubmit={handleSubmit}
         className="mt-8 flex flex-col gap-5 bg-white dark:bg-gray-800 p-4 sm:p-8 rounded-2xl shadow-lg hover:shadow-xl transition-transform transform hover:-translate-y-1 w-full"
         initial={{ opacity: 0, y: 20 }}
@@ -93,7 +97,7 @@ export default function Contact() {
           <input
             value={name}
             onChange={(e) => setName(e.target.value)}
-            placeholder="Your Name"
+            placeholder="Your full name"
             className={`w-full p-3 sm:p-4 text-sm sm:text-base border rounded-md focus:outline-none focus:ring-2 ${errors.name ? "border-red-500 focus:ring-red-500" : "border-gray-300 dark:border-gray-600 focus:ring-indigo-500"
               } dark:bg-gray-700 dark:text-white transition`}
           />
@@ -106,11 +110,26 @@ export default function Contact() {
             type="email"
             value={email}
             onChange={(e) => setEmail(e.target.value)}
-            placeholder="Email"
+            placeholder="your@email.com"
             className={`w-full p-3 sm:p-4 text-sm sm:text-base border rounded-md focus:outline-none focus:ring-2 ${errors.email ? "border-red-500 focus:ring-red-500" : "border-gray-300 dark:border-gray-600 focus:ring-indigo-500"
               } dark:bg-gray-700 dark:text-white transition`}
           />
           {errors.email && <p className="text-red-500 text-xs mt-1">{errors.email}</p>}
+        </div>
+        {/* Subject */}
+        <div>
+          <input
+            value={subject}
+            onChange={(e) => setSubject(e.target.value)}
+            placeholder="Subject (project inquiry, freelance work, collaboration)"
+            className={`w-full p-3 sm:p-4 text-sm sm:text-base border rounded-md focus:outline-none focus:ring-2 ${errors.subject
+              ? "border-red-500 focus:ring-red-500"
+              : "border-gray-300 dark:border-gray-600 focus:ring-indigo-500"
+              } dark:bg-gray-700 dark:text-white transition`}
+          />
+          {errors.subject && (
+            <p className="text-red-500 text-xs mt-1">{errors.subject}</p>
+          )}
         </div>
 
         {/* Message */}
@@ -119,7 +138,7 @@ export default function Contact() {
             value={message}
             onChange={(e) => setMessage(e.target.value)}
             rows={5}
-            placeholder="Message"
+            placeholder="Tell me about your project, idea, or how I can help..."
             className={`w-full p-3 sm:p-4 text-sm sm:text-base border rounded-md focus:outline-none focus:ring-2 resize-none ${errors.message ? "border-red-500 focus:ring-red-500" : "border-gray-300 dark:border-gray-600 focus:ring-indigo-500"
               } dark:bg-gray-700 dark:text-white transition`}
           />
@@ -129,12 +148,21 @@ export default function Contact() {
         {/* Submit Button */}
         <button
           type="submit"
-          className="cursor-pointer w-full sm:w-auto px-6 py-3 bg-indigo-600 text-white font-semibold rounded-md shadow-md hover:bg-indigo-700 transition disabled:opacity-50"
+          className="cursor-pointer flex items-center justify-center gap-2 w-full sm:w-auto px-6 py-3 bg-indigo-600 text-white font-semibold rounded-md shadow-md hover:bg-indigo-700 transition disabled:opacity-50"
           disabled={status === "sending"}
         >
-          {status === "sending" ? "Sending..." : "Send Message"}
+          {status === "sending" ? (
+            <>
+              <Loader2 className="animate-spin" size={18} />
+              Sending...
+            </>
+          ) : (
+            <>
+              <Send size={18} />
+              Send Message
+            </>
+          )}
         </button>
-
         {/* Status Messages */}
         <AnimatePresence>
           {status === "sent" && (
@@ -145,7 +173,9 @@ export default function Contact() {
               exit={{ opacity: 0, y: -10, scale: 0.9 }}
               transition={{ duration: 0.4 }}
             >
-              <motion.span className="text-3xl mb-2 animate-bounce">🎉</motion.span>
+              <motion.span className="mb-2 animate-bounce">
+                <PartyPopper size={32} />
+              </motion.span>
               <motion.p className="text-green-700 dark:text-green-300 font-semibold text-sm sm:text-base">
                 Your message has been sent successfully!
               </motion.p>
@@ -163,7 +193,9 @@ export default function Contact() {
               exit={{ opacity: 0, y: -10, scale: 0.9 }}
               transition={{ duration: 0.4 }}
             >
-              <motion.span className="text-3xl mb-2">❌</motion.span>
+              <motion.span className="mb-2 text-red-600">
+                <CircleX size={32} />
+              </motion.span>
               <motion.p className="text-red-700 dark:text-red-300 font-semibold text-sm sm:text-base">
                 Oops! Something went wrong.
               </motion.p>

@@ -24,25 +24,24 @@ export default function Navbar() {
       initial={{ y: -60, opacity: 0 }}
       animate={{ y: 0, opacity: 1 }}
       transition={{ duration: 0.6, ease: "easeOut" }}
-      className={`sticky top-0 z-50 transition-all ${
-        scrolled ? "shadow-md bg-white dark:bg-gray-900" : "bg-white/80 dark:bg-gray-900/80"
-      } border-b backdrop-blur-sm`}
+      className={`sticky top-0 z-50 transition-all ${scrolled ? "shadow-md bg-white dark:bg-gray-900" : "bg-white/80 dark:bg-gray-900/80"
+        } border-b backdrop-blur-sm`}
     >
       <div className="container mx-auto px-4 py-3 flex items-center justify-between">
         {/* Logo */}
-       <motion.div
-  initial={{ scale: 0.8, opacity: 0 }}
-  animate={{ scale: 1, opacity: 1 }}
-  whileHover={{ scale: 1.1, textShadow: "0px 0px 10px rgba(99, 102, 241, 0.8)" }}
-  transition={{ duration: 0.5 }}
->
-  <Link
-    href="/"
-    className="font-extrabold text-2xl text-gray-900 dark:text-gray-100 tracking-tight"
-  >
-    Kunal Kumar
-  </Link>
-</motion.div>
+        <motion.div
+          initial={{ scale: 0.8, opacity: 0 }}
+          animate={{ scale: 1, opacity: 1 }}
+          whileHover={{ scale: 1.1, textShadow: "0px 0px 10px rgba(99, 102, 241, 0.8)" }}
+          transition={{ duration: 0.5 }}
+        >
+          <Link
+            href="/"
+            className="font-extrabold text-2xl text-gray-900 dark:text-gray-100 tracking-tight"
+          >
+            Kunal Kumar
+          </Link>
+        </motion.div>
 
 
         {/* Desktop Menu */}

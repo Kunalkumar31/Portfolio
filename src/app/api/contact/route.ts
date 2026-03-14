@@ -1,21 +1,31 @@
-import { NextRequest, NextResponse } from "next/server";
+import { NextResponse } from "next/server";
+import { resend } from "@/lib/resend";
 
-export async function POST(req: NextRequest) {
-  const { name, email, message } = await req.json();
+export async function POST(req: Request) {
+  try {
+    const { name, email, subject, message } = await req.json();
 
-  const res = await fetch("https://formsubmit.co/el/megugo", {
-    method: "POST",
-    headers: { "Content-Type": "application/json" },
-    body: JSON.stringify({
-      name,
-      email,
-      message,
-      _subject: "New Contact Form",
-      _captcha: "false",
-    }),
-  });
+    await resend.emails.send({
+      from: "Portfolio <onboarding@resend.dev>",
+      to: "kunalkumarofficial31@gmail.com",
+      subject: `New Message: ${subject}`,
+      replyTo: email,
+      html: `
+        <h2>New Contact Form Message</h2>
 
-  return res.ok
-    ? NextResponse.json({ message: "Success" })
-    : NextResponse.json({ message: "Failed" }, { status: 500 });
+        <p><strong>Name:</strong> ${name}</p>
+        <p><strong>Email:</strong> ${email}</p>
+        <p><strong>Subject:</strong> ${subject}</p>
+
+        <p><strong>Message:</strong></p>
+        <p>${message}</p>
+      `,
+    });
+
+    return NextResponse.json({ success: true });
+
+  } catch (error) {
+    console.error("EMAIL ERROR:", error);
+    return NextResponse.json({ success: false }, { status: 500 });
+  }
 }

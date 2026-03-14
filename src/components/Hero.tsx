@@ -6,7 +6,6 @@ import { motion, Variants, AnimatePresence } from "framer-motion";
 import { gsap } from "gsap";
 import Link from "next/link";
 import { Github, Linkedin, Mail, Code, FileText } from "lucide-react";
-import { FiZap, FiCpu, FiActivity, FiTarget } from "react-icons/fi";
 
 export default function Hero() {
   const roles = [
@@ -25,7 +24,7 @@ export default function Hero() {
       setIndex((prev) => (prev + 1) % rolesCount);
     }, 3000);
     return () => clearInterval(interval);
-  }, []);
+  }, [roles.length]);
 
   // GSAP Animations on mount
   useEffect(() => {

@@ -1,6 +1,17 @@
 "use client";
 
 import { motion, Variants } from "framer-motion";
+import {
+    Zap,
+    Lightbulb,
+    Rocket,
+    Bot,
+    Shield,
+    Smartphone,
+    CheckCircle,
+    Puzzle,
+    Hand
+} from "lucide-react";
 
 export default function About() {
     // Animation variants
@@ -35,7 +46,9 @@ export default function About() {
                 animate="show"
                 variants={fadeUp}
             >
-                Hi 👋 I’m{" "}
+                <span className="inline-flex items-center gap-2">
+                    Hi <Hand size={22} className="text-yellow-500" /> I’m{" "}
+                </span>
                 <span className="font-semibold text-indigo-600 dark:text-indigo-400">Kunal Kumar</span>,
                 a{" "}
                 <span className="font-semibold text-purple-600 dark:text-purple-400">Full Stack Developer</span>{" "}
@@ -62,14 +75,14 @@ export default function About() {
             {/* Highlight Cards */}
             <div className="mt-14 grid gap-6 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 cursor-pointer">
                 {[
-                    { icon: "⚡", title: "Fast", desc: "Optimized applications with efficient, high-performance solutions." },
-                    { icon: "💡", title: "Creative", desc: "Modern, intuitive, and user-friendly UI/UX design." },
-                    { icon: "🚀", title: "Scalable", desc: "Applications designed for growth and long-term reliability." },
-                    { icon: "🤖", title: "AI-Driven", desc: "Smart integrations with AI to enhance functionality and decision-making." },
-                    { icon: "🔒", title: "Secure", desc: "Strong authentication, data protection, and compliance best practices." },
-                    { icon: "📱", title: "Responsive", desc: "Seamless experience across all devices and screen sizes." },
-                    { icon: "🛡️", title: "Reliable", desc: "Thoroughly tested applications for stability and uptime." },
-                    { icon: "🧩", title: "Maintainable", desc: "Clean, modular code that is easy to update and extend." },
+                    { icon: Zap, title: "Fast", desc: "Optimized applications with efficient, high-performance solutions." },
+                    { icon: Lightbulb, title: "Creative", desc: "Modern, intuitive, and user-friendly UI/UX design." },
+                    { icon: Rocket, title: "Scalable", desc: "Applications designed for growth and long-term reliability." },
+                    { icon: Bot, title: "AI-Driven", desc: "Smart integrations with AI to enhance functionality." },
+                    { icon: Shield, title: "Secure", desc: "Strong authentication and data protection." },
+                    { icon: Smartphone, title: "Responsive", desc: "Seamless experience across devices." },
+                    { icon: CheckCircle, title: "Reliable", desc: "Thoroughly tested applications for stability." },
+                    { icon: Puzzle, title: "Maintainable", desc: "Clean, modular code that is easy to extend." },
                 ].map((item, i) => (
                     <motion.div
                         key={item.title}
@@ -79,7 +92,7 @@ export default function About() {
                         animate="show"
                         variants={fadeUp}
                     >
-                        <div className="text-4xl mb-3">{item.icon}</div>
+                        <item.icon size={36} className="text-indigo-600 dark:text-indigo-400 mb-3" />
                         <h2 className="text-xl sm:text-2xl font-bold text-gray-900 dark:text-white mb-2">{item.title}</h2>
                         <p className="text-gray-600 dark:text-gray-300 text-sm sm:text-base">{item.desc}</p>
                     </motion.div>
