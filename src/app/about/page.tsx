@@ -108,11 +108,11 @@ export default function About() {
                 <div className="grid gap-6 sm:gap-8 md:grid-cols-2">
                     {[
                         {
-                            role: "Programmer Analyst Intern",
-                            company: "CepiaLabs PVT. LTD.",
+                            role: "Programmer Analyst",
+                            company: "CepiaLabs Pvt. Ltd.",
                             location: "Noida, Uttar Pradesh",
-                            period: "Aug 2025 – Present",
-                            desc: "Designed and developed scalable web platforms using React.js, Node.js, and MongoDB. Improved API performance and system efficiency by 30%. Collaborated with cross-functional teams to deliver user-centric, data-driven solutions.",
+                            period: "Aug 2025 – Mar 2026",
+                            desc: "Engineered scalable MERN stack applications, improving performance and system reliability. Optimized RESTful APIs, reducing response time by 30%. Delivered production-ready features in collaboration with cross-functional teams.",
                         },
                         {
                             role: "Full Stack Developer Intern",
