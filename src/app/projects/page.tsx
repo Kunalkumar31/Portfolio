@@ -27,9 +27,23 @@ const projects = [
     github: "https://github.com/Kunalkumar31/LMS_project.git",
   },
   {
+    title: "EfficioBoard",
+    description:
+      "Lightweight Kanban board to visually manage tasks and workflows.",
+    tech: ["HTML", "CSS", "JavaScript"],
+    github: "https://github.com/Kunalkumar31/EfficioBoard.git"
+  },
+  {
+    title: "SnakeX",
+    description:
+      "Modern remake of the classic Snake game with smooth gameplay.",
+    tech: ["HTML", "CSS", "JavaScript"],
+    github: "https://github.com/Kunalkumar31/SnakeX.git"
+  },
+  {
     title: "Weather App",
     description:
-      "Weather app with dark mode, local storage, and reviews section.",
+      "Weather app with dark mode, local storage, and reviews.",
     tech: ["React", "OpenWeatherMap API", "Tailwind CSS"],
     github: "https://github.com/Kunalkumar31/Weather-App.git",
     live: "https://weather-app-jet-eight-56.vercel.app/",
@@ -37,69 +51,74 @@ const projects = [
   {
     title: "BlossomCart UI",
     description:
-      "Designed with modern layout principles to deliver a smooth, user-friendly shopping experience across all devices.",
-    tech: ["MERN","Tailwind CSS"],
+      "Modern e-commerce UI delivering smooth shopping experience.",
+    tech: ["MERN", "Tailwind CSS"],
     github: "https://github.com/Kunalkumar31/blossomcraft-ui.git",
     live: "https://blossomcraft-ui.vercel.app/",
   },
   {
-    title: "JavaScript Password Generator",
+    title: "Password Generator",
     description:
-      "Secure password generator with options for length, symbols, numbers, and copy-to-clipboard.",
+      "Secure password generator with customizable options.",
     tech: ["JavaScript", "HTML", "CSS"],
     github:
       "https://github.com/Kunalkumar31/JavaScript--Based-Secure-Password-Generator.git",
   },
 ];
 
-
 const containerVariants: Variants = {
   hidden: { opacity: 0 },
-  visible: {
-    opacity: 1,
-    transition: { staggerChildren: 0.15 },
-  },
+  visible: { opacity: 1, transition: { staggerChildren: 0.12 } },
 };
 
 const cardVariants: Variants = {
-  hidden: { opacity: 0, y: 30 },
+  hidden: { opacity: 0, y: 40 },
   visible: {
     opacity: 1,
     y: 0,
-    transition: {
-      type: "spring", 
-      stiffness: 100,
-      damping: 18,
-    },
+    transition: { type: "spring", stiffness: 90, damping: 16 },
   },
 };
 
 export default function Projects() {
   return (
-    <section className="max-w-6xl mx-auto py-16 px-6">
+    <section className="relative max-w-6xl mx-auto py-24 px-6">
+
+      {/* Glow background */}
+      <div className="absolute inset-0 -z-10 bg-gradient-to-r from-indigo-100/40 via-purple-100/30 to-pink-100/40 dark:from-indigo-900/10 dark:via-purple-900/10 dark:to-pink-900/10 blur-3xl"></div>
+
+      {/* Badge */}
+      <motion.div
+        className="flex justify-center mb-6"
+        initial={{ opacity: 0, y: -10 }}
+        animate={{ opacity: 1, y: 0 }}
+      >
+      </motion.div>
+
       {/* Heading */}
       <motion.h1
-        className="text-4xl md:text-5xl font-bold text-center text-gray-900 dark:text-white"
+        className="text-4xl md:text-6xl font-extrabold text-center bg-gradient-to-r from-indigo-600 via-purple-600 to-pink-600 bg-clip-text text-transparent"
         initial={{ opacity: 0, y: -20 }}
         animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.5 }}
       >
-        Projects
+        Featured Projects
       </motion.h1>
 
+      {/* Intro */}
       <motion.p
-        className="text-center mt-3 text-gray-600 dark:text-gray-400 max-w-2xl mx-auto"
+        className="text-center mt-6 text-lg text-gray-600 dark:text-gray-400 max-w-2xl mx-auto"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
-        transition={{ delay: 0.3 }}
+        transition={{ delay: 0.2 }}
       >
-        A curated selection of projects showcasing my work in full-stack
-        development, real-time systems, and modern web technologies.
+        A curated collection of real-world applications showcasing my skills in
+        full-stack development, real-time systems, performance optimization,
+        and modern web technologies.
       </motion.p>
 
-      {/* Projects Grid */}
+      {/* Grid */}
       <motion.div
-        className="mt-12 grid gap-8 sm:grid-cols-2 lg:grid-cols-3"
+        className="mt-16 grid gap-10 sm:grid-cols-2 lg:grid-cols-3"
         variants={containerVariants}
         initial="hidden"
         animate="visible"
@@ -108,7 +127,7 @@ export default function Projects() {
           <motion.div
             key={project.title}
             variants={cardVariants}
-            whileHover={{ y: -6 }}
+            whileHover={{ y: -8 }}
             whileTap={{ scale: 0.98 }}
           >
             <ProjectCard project={project} />

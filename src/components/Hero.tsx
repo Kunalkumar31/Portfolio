@@ -9,8 +9,8 @@ import { Github, Linkedin, Mail, Code, FileText } from "lucide-react";
 
 export default function Hero() {
   const roles = [
-    "Full Stack Developer",
-    "AI & Real-time Systems Enthusiast",
+    "Full-Stack Developer",
+    "Building AI-Powered, Real-Time Web Apps",
   ];
   const [index, setIndex] = useState(0);
 
@@ -28,24 +28,25 @@ export default function Hero() {
 
   // GSAP Animations on mount
   useEffect(() => {
-    if (heroRef.current && bgCircleRef.current) {
-      const tl = gsap.timeline({ defaults: { ease: "power3.out" } });
+    if (!heroRef.current || !bgCircleRef.current) return;
 
-      // Animate hero content
-      tl.from(heroRef.current, {
+    const ctx = gsap.context(() => {
+      gsap.from(heroRef.current, {
         opacity: 0,
         y: 50,
         duration: 1,
+        ease: "power3.out",
       });
 
-      // Animate background circles
       gsap.to(bgCircleRef.current, {
         rotation: 360,
         repeat: -1,
         duration: 20,
         ease: "linear",
       });
-    }
+    }, heroRef);
+
+    return () => ctx.revert();
   }, []);
 
   const container: Variants = {
@@ -110,19 +111,19 @@ export default function Hero() {
           animate="show"
         >
           <motion.p variants={item}>
-            Full Stack Developer with 1+ years of experience in MERN & Next.js, delivering scalable, real-time, production-ready applications.
+            Full-Stack Developer with 1+ years of hands-on experience building high-performance, scalable web applications using the MERN stack and Next.js, from concept to production.
           </motion.p>
 
           <motion.p variants={item}>
-            Specialized in REST/MySQL APIs, WebSockets, MongoDB architecture, and cloud deployment using AWS & Docker.
+            Expert in designing robust RESTful & MySQL APIs, real-time systems with WebSockets, and optimized MongoDB architectures deployed on AWS using Docker.
           </motion.p>
 
           <motion.p variants={item}>
-            Hands-on experience building AI-powered tools with OpenAI API, including intelligent chatbots and recommendation systems.
+            Built AI-powered products using OpenAI APIs, including intelligent chatbots, automation tools, and personalized recommendation systems that enhance user engagement.
           </motion.p>
 
           <motion.p variants={item}>
-            Strong problem-solving mindset with a track record of delivering high-quality solutions in collaborative teams.
+            Strong problem-solver who thrives in collaborative teams, consistently delivering clean, maintainable code and production-ready solutions.
           </motion.p>
 
         </motion.div>
