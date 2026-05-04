@@ -12,16 +12,18 @@ export default function Footer() {
 
   return (
     <footer className="bg-gray-100 dark:bg-gray-900 text-gray-700 dark:text-gray-300 py-8 border-t border-gray-300 dark:border-gray-700">
+
       <motion.div
-        className="max-w-6xl mx-auto px-4 sm:px-6 md:px-12 flex flex-col md:flex-row justify-between items-center gap-4 md:gap-0 text-center md:text-left"
+        className="max-w-6xl mx-auto px-4 sm:px-6 md:px-12 flex flex-col md:flex-row justify-between items-center gap-5 text-center md:text-left"
         initial={{ opacity: 0, y: 20 }}
         animate={{ opacity: 1, y: 0 }}
-        transition={{ duration: 0.8 }}
+        transition={{ duration: 0.7 }}
       >
+
         {/* Copyright */}
-        <p className="text-sm sm:text-base">
-          &copy; {new Date().getFullYear()}{" "}
-          <span className="font-semibold text-indigo-600">
+        <p className="text-sm sm:text-base leading-relaxed">
+          © {new Date().getFullYear()}{" "}
+          <span className="font-semibold text-indigo-600 hover:text-indigo-500 transition">
             <a href="mailto:kunalkumarofficial31@gmail.com">Kunal Kumar</a>
           </span>
           . All rights reserved.
@@ -35,14 +37,15 @@ export default function Footer() {
               href={link.href}
               target="_blank"
               rel="noopener noreferrer"
-              className="flex items-center gap-1 sm:gap-2 px-2 py-1 text-gray-700 dark:text-gray-300 hover:text-indigo-600 transition-transform"
-              whileHover={{ scale: 1.2, y: -2 }}
+              className="flex items-center gap-1 sm:gap-2 px-3 py-1 rounded-md text-gray-700 dark:text-gray-300 hover:text-indigo-600 hover:bg-gray-200 dark:hover:bg-gray-800 transition"
+              whileHover={{ scale: 1.1, y: -2 }}
               whileTap={{ scale: 0.95 }}
               initial={{ opacity: 0, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: idx * 0.15 }}
+              transition={{ delay: idx * 0.12 }}
             >
-              {link.icon} <span className="hidden sm:inline">{link.label}</span>
+              {link.icon}
+              <span className="hidden sm:inline text-sm">{link.label}</span>
             </motion.a>
           ))}
         </div>
@@ -50,16 +53,17 @@ export default function Footer() {
 
       {/* Footer Note */}
       <motion.p
-        className="text-xs text-gray-500 dark:text-gray-400 mt-4 text-center"
+        className="text-xs text-gray-500 dark:text-gray-400 mt-5 text-center tracking-wide"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
-        transition={{ delay: 0.5, duration: 0.8 }}
+        transition={{ delay: 0.5, duration: 0.6 }}
       >
-        Designed & Developed by{" "}
-        <span className="font-semibold text-indigo-600">
+        Designed & Built with ❤️ by{" "}
+        <span className="font-semibold text-indigo-600 hover:text-indigo-500 transition">
           <a href="mailto:kunalkumarofficial31@gmail.com">Kunal Kumar</a>
         </span>
       </motion.p>
+
     </footer>
   );
 }

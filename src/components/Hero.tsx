@@ -1,189 +1,245 @@
 "use client";
 
 import Image from "next/image";
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect,useMemo } from "react";
 import { motion, Variants, AnimatePresence } from "framer-motion";
-import { gsap } from "gsap";
 import Link from "next/link";
-import { Github, Linkedin, Mail, Code, FileText } from "lucide-react";
+import {
+  Github,
+  Linkedin,
+  Mail,
+  Code,
+  FileText,
+  Sparkles,
+  Briefcase, Rocket, Brain
+} from "lucide-react";
 
 export default function Hero() {
-  const roles = [
+  const roles = useMemo(
+  () => [
     "Full-Stack Developer",
-    "Building AI-Powered, Real-Time Web Apps",
-  ];
+    "Building Scalable & AI-Powered Products",
+  ],
+  []
+);
+
   const [index, setIndex] = useState(0);
 
-  const heroRef = useRef<HTMLDivElement>(null);
-  const bgCircleRef = useRef<HTMLDivElement>(null);
-
-  // Cycle roles every 3 seconds
   useEffect(() => {
-    const rolesCount = roles.length;
-    const interval = setInterval(() => {
-      setIndex((prev) => (prev + 1) % rolesCount);
-    }, 3000);
-    return () => clearInterval(interval);
-  }, [roles.length]);
+  const interval = setInterval(() => {
+    setIndex((prev) => (prev + 1) % roles.length);
+  }, 2500);
 
-  // GSAP Animations on mount
-  useEffect(() => {
-    if (!heroRef.current || !bgCircleRef.current) return;
-
-    const ctx = gsap.context(() => {
-      gsap.from(heroRef.current, {
-        opacity: 0,
-        y: 50,
-        duration: 1,
-        ease: "power3.out",
-      });
-
-      gsap.to(bgCircleRef.current, {
-        rotation: 360,
-        repeat: -1,
-        duration: 20,
-        ease: "linear",
-      });
-    }, heroRef);
-
-    return () => ctx.revert();
-  }, []);
+  return () => clearInterval(interval);
+}, [roles.length]);
 
   const container: Variants = {
     hidden: { opacity: 0 },
-    show: { opacity: 1, transition: { staggerChildren: 0.2 } },
+    show: { opacity: 1, transition: { staggerChildren: 0.15 } },
   };
 
   const item: Variants = {
     hidden: { opacity: 0, y: 20 },
-    show: { opacity: 1, y: 0, transition: { duration: 0.6, ease: "easeOut" } },
+    show: { opacity: 1, y: 0 },
   };
 
   return (
-    <section className="relative flex flex-col items-center justify-center text-center py-16 px-4 min-h-screen overflow-hidden font-mono bg-gradient-to-b from-gray-50 to-gray-100 dark:from-gray-900 dark:to-gray-800">
+    <section className="relative flex items-center justify-center text-center px-4 sm:px-6 md:px-8 py-12 sm:py-16 min-h-screen bg-white dark:bg-gray-900 overflow-hidden">
 
-      {/* Animated Background Circle */}
-      <div
-        ref={bgCircleRef}
-        className="absolute w-[500px] h-[500px] bg-purple-200/20 rounded-full top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 -z-10"
-      ></div>
+      {/* Glow */}
+      <div className="absolute w-[280px] sm:w-[350px] md:w-[400px] h-[280px] sm:h-[350px] md:h-[400px] bg-purple-500/10 blur-3xl rounded-full top-10 sm:top-20 left-1/2 -translate-x-1/2 -z-10"></div>
 
-      {/* Hero Content */}
-      <div ref={heroRef} className="relative z-10 flex flex-col items-center">
-        {/* Profile Image */}
-        <Image
-          src="/Me_P.png"
-          alt="Kunal Kumar"
-          width={160}
-          height={160}
-          className="rounded-full border-2 border-gray-700 shadow-lg"
-          priority
-        />
+      <motion.div
+        variants={container}
+        initial="hidden"
+        animate="show"
+        className="flex flex-col items-center w-full max-w-3xl"
+      >
 
-        {/* Heading */}
-        <motion.div className="mt-6" variants={container} initial="hidden" animate="show">
-          <motion.h1
-            className="text-3xl sm:text-4xl md:text-5xl font-bold tracking-tight text-gray-900 dark:text-gray-100"
-            variants={item}
-          >
-            Hi, I’m Kunal Kumar
-          </motion.h1>
-
-          <AnimatePresence mode="wait">
-            <motion.p
-              key={roles[index]}
-              initial={{ opacity: 0, y: 10 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -10 }}
-              transition={{ duration: 0.6 }}
-              className="mt-2 text-base sm:text-lg md:text-xl text-gray-700 dark:text-gray-300"
-            >
-              {roles[index]}
-            </motion.p>
-          </AnimatePresence>
+        {/* Profile */}
+        <motion.div variants={item}>
+          <Image
+            src="/Me_P.png"
+            alt="Kunal Kumar"
+            width={120}
+            height={120}
+            className="sm:w-[140px] sm:h-[140px] rounded-full border border-gray-300 dark:border-gray-700 shadow-md"
+          />
         </motion.div>
 
-        {/* Description */}
-        <motion.div
-          className="mt-6 max-w-3xl text-sm sm:text-base md:text-lg text-gray-700 dark:text-gray-300 space-y-3"
-          variants={container}
-          initial="hidden"
-          animate="show"
+        {/* Heading */}
+        <motion.h1
+          variants={item}
+          className="mt-5 sm:mt-6 text-2xl sm:text-4xl md:text-5xl font-bold text-gray-900 dark:text-white leading-tight"
         >
-          <motion.p variants={item}>
-            Full-Stack Developer with 1+ years of hands-on experience building high-performance, scalable web applications using the MERN stack and Next.js, from concept to production.
-          </motion.p>
+          Hi, I’m{" "}
+          <span className="font-extrabold">Kunal Kumar</span>
+        </motion.h1>
 
-          <motion.p variants={item}>
-            Expert in designing robust RESTful & MySQL APIs, real-time systems with WebSockets, and optimized MongoDB architectures deployed on AWS using Docker.
+        {/* Role */}
+        <AnimatePresence mode="wait">
+          <motion.p
+            key={roles[index]}
+            initial={{ opacity: 0, y: 10 }}
+            animate={{ opacity: 1, y: 0 }}
+            exit={{ opacity: 0, y: -10 }}
+            transition={{ duration: 0.4 }}
+            className="mt-2 sm:mt-3 text-sm sm:text-lg text-gray-600 dark:text-gray-400"
+          >
+            {roles[index]}
           </motion.p>
+        </AnimatePresence>
 
-          <motion.p variants={item}>
-            Built AI-powered products using OpenAI APIs, including intelligent chatbots, automation tools, and personalized recommendation systems that enhance user engagement.
-          </motion.p>
+        {/* Description */}
+        <motion.p
+          variants={item}
+          className="mt-4 sm:mt-6 text-sm sm:text-base md:text-lg text-gray-600 dark:text-gray-400 leading-relaxed max-w-xs sm:max-w-xl md:max-w-2xl"
+        >
+          I build{" "}
+          <span className="font-semibold text-gray-900 dark:text-white">
+            scalable, high-performance web applications
+          </span>{" "}
+          and{" "}
+          <span className="font-semibold text-gray-900 dark:text-white">
+            AI-powered systems
+          </span>{" "}
+          that solve real-world problems — from idea to production.
+        </motion.p>
 
-          <motion.p variants={item}>
-            Strong problem-solver who thrives in collaborative teams, consistently delivering clean, maintainable code and production-ready solutions.
-          </motion.p>
+        {/* Trust Badges */}
+        <motion.div
+          variants={item}
+          className="mt-5 sm:mt-6 flex flex-wrap justify-center gap-3 sm:gap-4 text-xs sm:text-sm"
+        >
+          <span className="flex items-center gap-1.5 px-3 py-1.5 rounded-full border border-gray-300 dark:border-gray-700 text-gray-600 dark:text-gray-300">
+            <Briefcase size={14} />
+            1+ Years Experience
+          </span>
 
+          <span className="flex items-center gap-1.5 px-3 py-1.5 rounded-full border border-gray-300 dark:border-gray-700 text-gray-600 dark:text-gray-300">
+            <Rocket size={14} />
+            10+ Projects Built
+          </span>
+
+          <span className="flex items-center gap-1.5 px-3 py-1.5 rounded-full border border-gray-300 dark:border-gray-700 text-gray-600 dark:text-gray-300">
+            <Brain size={14} />
+            AI & Scalable Systems
+          </span>
+        </motion.div>
+
+        {/* Tech Stack */}
+        <motion.div
+          variants={item}
+          className="mt-5 sm:mt-6 flex flex-wrap justify-center gap-2 max-w-xs sm:max-w-xl"
+        >
+          {["React",
+            "Next.js",
+            "Node.js",
+            "Express.js",
+            "MongoDB",
+            "MySQL",
+            "WebSockets",
+            "Tailwind CSS",
+            "TypeScript",
+            "AWS",
+            "Docker",
+            "REST APIs",
+            "OpenAI API",
+            "Git",].map(
+              (tech, i) => (
+                <span
+                  key={i}
+                  className="px-2 sm:px-3 py-1 text-xs sm:text-sm rounded-full border border-gray-300 dark:border-gray-700 text-gray-600 dark:text-gray-300"
+                >
+                  {tech}
+                </span>
+              )
+            )}
         </motion.div>
 
         {/* Buttons */}
         <motion.div
-          className="mt-8 flex flex-col sm:flex-row flex-wrap justify-center gap-4"
-          variants={container}
-          initial="hidden"
-          animate="show"
+          variants={item}
+          className="mt-6 sm:mt-8 flex flex-col sm:flex-row w-full sm:w-auto gap-3 sm:gap-4"
         >
-          <motion.div variants={item}>
-            <Link
-              href="/projects"
-              className="px-6 py-3 flex items-center justify-center gap-2 border rounded text-gray-900 dark:text-gray-100 hover:bg-gray-100 dark:hover:bg-gray-800 transition-transform transform hover:scale-105"
-            >
-              <Code size={20} /> View Projects
-            </Link>
-          </motion.div>
+          <Link
+            href="/projects"
+            className="w-full sm:w-auto px-5 py-3 flex items-center justify-center gap-2 rounded-md bg-gray-900 text-white dark:bg-white dark:text-black hover:scale-105 transition"
+          >
+            <Code size={18} /> View Projects
+          </Link>
 
-          <motion.div variants={item}>
-            <a
-              href="/KunalKumar_CV.pdf"
-              download
-              className="px-6 py-3 flex items-center justify-center gap-2 border rounded text-gray-900 dark:text-gray-100 hover:bg-gray-100 dark:hover:bg-gray-800 transition-transform transform hover:scale-105"
-            >
-              <FileText size={20} /> Download Resume
-            </a>
-          </motion.div>
+          <Link
+            href="/contact"
+            className="w-full sm:w-auto px-5 py-3 flex items-center justify-center gap-2 rounded-md border border-gray-300 dark:border-gray-700 hover:bg-gray-100 dark:hover:bg-gray-800 transition"
+          >
+            <Mail size={18} /> Hire Me
+          </Link>
+
+          <a
+            href="/KunalKumar_CV.pdf"
+            download
+            className="w-full sm:w-auto px-5 py-3 flex items-center justify-center gap-2 border border-gray-300 dark:border-gray-700 rounded-md hover:bg-gray-100 dark:hover:bg-gray-800 transition"
+          >
+            <FileText size={18} /> Resume
+          </a>
         </motion.div>
 
-        {/* Social Icons */}
+        {/* Social */}
         <motion.div
-          className="mt-8 flex gap-6 justify-center"
-          initial="hidden"
-          animate="show"
-          variants={{ hidden: {}, show: { transition: { staggerChildren: 0.15 } } }}
+          variants={item}
+          className="mt-6 sm:mt-8 flex flex-wrap justify-center gap-3 sm:gap-4"
         >
           {[
-            { href: "https://github.com/Kunalkumar31", icon: <Github size={26} /> },
-            { href: "https://www.linkedin.com/in/kunalkumar31/", icon: <Linkedin size={26} /> },
-            { href: "mailto:kunalkumarofficial31@gmail.com", icon: <Mail size={26} /> },
-          ].map((item, idx) => (
+            { href: "https://github.com/Kunalkumar31", icon: <Github size={18} /> },
+            { href: "https://linkedin.com/in/kunalkumar31", icon: <Linkedin size={18} /> },
+            { href: "mailto:kunalkumarofficial31@gmail.com", icon: <Mail size={18} /> },
+          ].map((item, i) => (
             <motion.a
-              key={idx}
+              key={i}
               href={item.href}
               target="_blank"
-              rel="noopener noreferrer"
-              className="text-gray-700 dark:text-gray-300 hover:text-gray-900 dark:hover:text-white transition-transform"
-              whileHover={{ scale: 1.3, rotate: 10 }}
-              whileTap={{ scale: 0.9, rotate: -5 }}
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ type: "spring", stiffness: 300, damping: 20, delay: idx * 0.2 }}
+              whileHover={{ scale: 1.1 }}
+              className="p-2 sm:p-3 rounded-lg border border-gray-300 dark:border-gray-700 hover:bg-gray-100 dark:hover:bg-gray-800 transition"
             >
               {item.icon}
             </motion.a>
           ))}
         </motion.div>
-      </div>
+
+        <motion.div
+          variants={item}
+          className="mt-8 sm:mt-10 flex flex-col items-center gap-3 text-xs sm:text-sm text-gray-500 dark:text-gray-400"
+        >
+          <div className="flex items-center gap-2 text-xs sm:text-sm text-gray-500 dark:text-gray-400">
+            <Sparkles size={14} />
+            <span>Engineering scalable & production-grade applications</span>
+          </div>
+
+          {/* Divider */}
+          <div className="w-12 h-[1px] bg-gray-300 dark:bg-gray-700"></div>
+
+          <p className="text-xs sm:text-sm text-gray-600 dark:text-gray-300 mt-2 font-medium">
+            Actively open to freelance, full-time & remote opportunities
+          </p>
+        </motion.div>
+
+        {/* Scroll Indicator */}
+        <motion.div
+          variants={item}
+          className="mt-10 flex flex-col items-center gap-2 text-gray-400 dark:text-gray-500"
+        >
+          <span className="text-xs sm:text-sm">Scroll to explore</span>
+
+          <motion.div
+            animate={{ y: [0, 8, 0] }}
+            transition={{ repeat: Infinity, duration: 1.5 }}
+            className="w-5 h-8 border-2 border-gray-400 dark:border-gray-600 rounded-full flex justify-center pt-1"
+          >
+            <div className="w-1 h-2 bg-gray-400 dark:bg-gray-500 rounded-full" />
+          </motion.div>
+        </motion.div>
+      </motion.div>
     </section>
   );
 }
