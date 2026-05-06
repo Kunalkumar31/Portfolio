@@ -5,70 +5,91 @@ import { motion } from "framer-motion";
 
 export default function Footer() {
   const socialLinks = [
-    { href: "https://github.com/Kunalkumar31", icon: <Github size={20} />, label: "GitHub" },
-    { href: "https://linkedin.com/in/kunalkumar31", icon: <Linkedin size={20} />, label: "LinkedIn" },
-    { href: "mailto:kunalkumarofficial31@gmail.com", icon: <Mail size={20} />, label: "Email" },
+    { href: "https://github.com/Kunalkumar31", icon: <Github size={18} />, label: "GitHub" },
+    { href: "https://linkedin.com/in/kunalkumar31", icon: <Linkedin size={18} />, label: "LinkedIn" },
+    { href: "mailto:kunalkumarofficial31@gmail.com", icon: <Mail size={18} />, label: "Email" },
   ];
 
   return (
-    <footer className="bg-gray-100 dark:bg-gray-900 text-gray-700 dark:text-gray-300 py-8 border-t border-gray-300 dark:border-gray-700">
+    <footer className="relative mt-20 border-t border-gray-200 dark:border-gray-800">
+
+      {/* Background Glow */}
+      <div className="absolute inset-0 -z-10 pointer-events-none">
+        <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[400px] h-[200px] bg-indigo-500/10 blur-3xl rounded-full"></div>
+      </div>
 
       <motion.div
-        className="max-w-6xl mx-auto px-4 sm:px-6 md:px-12 flex flex-col md:flex-row justify-between items-center gap-5 text-center md:text-left"
-        initial={{ opacity: 0, y: 20 }}
+        className="max-w-6xl mx-auto px-4 sm:px-6 md:px-12 py-10 flex flex-col md:flex-row justify-between items-center gap-6 text-center md:text-left"
+        initial={{ opacity: 0, y: 30 }}
         animate={{ opacity: 1, y: 0 }}
         transition={{ duration: 0.7 }}
       >
 
-        {/* Copyright */}
-        <p className="text-sm sm:text-base leading-relaxed">
-          © {new Date().getFullYear()}{" "}
-          <span className="font-semibold text-indigo-600 hover:text-indigo-500 transition">
-            <a href="mailto:kunalkumarofficial31@gmail.com">Kunal Kumar</a>
-          </span>
-          . All rights reserved.
-        </p>
+        {/* Left */}
+        <div className="space-y-2">
+          <p className="text-sm sm:text-base text-gray-600 dark:text-gray-400">
+            © {new Date().getFullYear()}{" "}
+            <a
+              href="mailto:kunalkumarofficial31@gmail.com"
+              className="font-semibold text-indigo-600 hover:text-indigo-500 transition"
+            >
+              Kunal Kumar
+            </a>
+          </p>
+
+          <p className="text-xs sm:text-sm text-gray-500 dark:text-gray-500">
+            Building scalable & AI-powered digital experiences
+          </p>
+        </div>
 
         {/* Social Links */}
-        <div className="flex flex-wrap justify-center md:justify-end gap-4 sm:gap-6">
+        <div className="flex flex-wrap justify-center md:justify-end gap-4">
           {socialLinks.map((link, idx) => (
             <motion.a
               key={idx}
               href={link.href}
               target="_blank"
               rel="noopener noreferrer"
-              className="flex items-center gap-1 sm:gap-2 px-3 py-1 rounded-md text-gray-700 dark:text-gray-300 hover:text-indigo-600 hover:bg-gray-200 dark:hover:bg-gray-800 transition"
               whileHover={{ scale: 1.1, y: -2 }}
               whileTap={{ scale: 0.95 }}
+              className="p-2.5 rounded-lg border border-gray-200 dark:border-gray-700 text-gray-600 dark:text-gray-300 hover:text-indigo-600 dark:hover:text-indigo-400 hover:bg-gray-100 dark:hover:bg-gray-800 transition"
               initial={{ opacity: 0, y: 10 }}
               animate={{ opacity: 1, y: 0 }}
               transition={{ delay: idx * 0.12 }}
             >
               {link.icon}
-              <span className="hidden sm:inline text-sm">{link.label}</span>
             </motion.a>
           ))}
         </div>
       </motion.div>
 
-      {/* Footer Note */}
-      <motion.p
-        className="mt-6 text-xs sm:text-sm text-gray-500 dark:text-gray-400 text-center tracking-wide leading-relaxed max-w-xs sm:max-w-md mx-auto flex items-center justify-center gap-1 flex-wrap"
+      {/* Bottom Note */}
+      <motion.div
+        className="pb-6 flex justify-center px-4"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
-        transition={{ delay: 0.5, duration: 0.6 }}
+        transition={{ delay: 0.5 }}
       >
-        Designed & built with
-        <Heart size={14} className="text-red-500" />
-        by{" "}
-        <a
-          href="mailto:kunalkumarofficial31@gmail.com"
-          className="font-semibold text-indigo-600 hover:text-indigo-500 transition"
-        >
-          Kunal Kumar
-        </a>
-      </motion.p>
+        <p className="text-xs sm:text-sm text-gray-500 dark:text-gray-400 flex items-center gap-1.5 sm:gap-2 flex-wrap justify-center text-center leading-relaxed max-w-xs sm:max-w-md">
 
+          Designed & built with
+
+          <Heart
+            size={14}
+            className="text-red-500 animate-pulse shrink-0"
+          />
+
+          by{" "}
+
+          <a
+            href="mailto:kunalkumarofficial31@gmail.com"
+            className="font-semibold text-indigo-600 hover:text-indigo-500 transition"
+          >
+            Kunal Kumar
+          </a>
+
+        </p>
+      </motion.div>
     </footer>
   );
 }

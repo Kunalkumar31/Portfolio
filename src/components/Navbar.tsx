@@ -30,10 +30,8 @@ export default function Navbar() {
       initial={{ y: -60, opacity: 0 }}
       animate={{ y: 0, opacity: 1 }}
       transition={{ duration: 0.5 }}
-      className={`sticky top-0 z-50 border-b backdrop-blur-md transition-all ${
-        scrolled
-          ? "bg-white shadow-md dark:bg-gray-900"
-          : "bg-white/70 dark:bg-gray-900/70"
+      className={`sticky top-0 z-50 transition-all nav-glass ${
+        scrolled ? "nav-glow" : ""
       }`}
     >
       <div className="container mx-auto px-4 py-3 flex items-center justify-between">
@@ -42,7 +40,7 @@ export default function Navbar() {
         <motion.div whileHover={{ scale: 1.05 }}>
           <Link
             href="/"
-            className="font-extrabold text-xl sm:text-2xl text-gray-900 dark:text-white"
+            className="font-extrabold text-xl sm:text-2xl bg-gradient-to-r from-indigo-600 to-purple-600 bg-clip-text text-transparent"
           >
             Kunal Kumar
           </Link>
@@ -58,16 +56,13 @@ export default function Navbar() {
               <Link
                 key={item.href}
                 href={item.href}
-                className={`transition relative ${
+                className={`nav-link relative transition ${
                   isActive
-                    ? "text-indigo-600 dark:text-indigo-400"
+                    ? "text-indigo-600 dark:text-indigo-400 nav-active"
                     : "text-gray-700 dark:text-gray-300 hover:text-indigo-600 dark:hover:text-indigo-400"
                 }`}
               >
                 {item.label}
-                {isActive && (
-                  <span className="absolute -bottom-1 left-0 w-full h-[2px] bg-indigo-500 rounded" />
-                )}
               </Link>
             );
           })}
@@ -76,6 +71,7 @@ export default function Navbar() {
           <a
             href="/KunalKumar_CV.pdf"
             target="_blank"
+            rel="noopener noreferrer"
             className="px-3 py-1.5 rounded-md border border-gray-300 dark:border-gray-700 hover:bg-gray-100 dark:hover:bg-gray-800 transition"
           >
             Resume
@@ -86,7 +82,7 @@ export default function Navbar() {
 
         {/* Mobile Button */}
         <button
-          className="md:hidden p-2 rounded hover:bg-gray-100 dark:hover:bg-gray-800"
+          className="md:hidden p-2 rounded hover:bg-gray-100 dark:hover:bg-gray-800 transition"
           onClick={() => setIsOpen(!isOpen)}
         >
           {isOpen ? <X size={24} /> : <Menu size={24} />}
@@ -101,16 +97,17 @@ export default function Navbar() {
             ? { height: "auto", opacity: 1 }
             : { height: 0, opacity: 0 }
         }
-        className="md:hidden overflow-hidden bg-white dark:bg-gray-900 border-t"
+        transition={{ duration: 0.3 }}
+        className="md:hidden overflow-hidden nav-glass border-t"
       >
-        <div className="flex flex-col items-center gap-4 py-5 font-medium">
+        <div className="flex flex-col items-center gap-5 py-6 font-medium">
 
           {navItems.map((item) => (
             <Link
               key={item.href}
               href={item.href}
               onClick={() => setIsOpen(false)}
-              className="hover:text-indigo-600 dark:hover:text-indigo-400 transition"
+              className="text-gray-700 dark:text-gray-300 hover:text-indigo-600 dark:hover:text-indigo-400 transition"
             >
               {item.label}
             </Link>
@@ -119,7 +116,8 @@ export default function Navbar() {
           <a
             href="/KunalKumar_CV.pdf"
             target="_blank"
-            className="px-3 py-1.5 border rounded hover:bg-gray-100 dark:hover:bg-gray-800 transition"
+            rel="noopener noreferrer"
+            className="px-4 py-2 border rounded-md hover:bg-gray-100 dark:hover:bg-gray-800 transition"
             onClick={() => setIsOpen(false)}
           >
             Resume

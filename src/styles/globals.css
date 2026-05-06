@@ -12,16 +12,17 @@ html, body, #__next {
 }
 
 html {
-  scroll-behavior: smooth; /* ✅ added */
+  scroll-behavior: smooth;
 }
 
 body {
-  @apply bg-white text-gray-800 antialiased transition-colors duration-300; /* ✅ smooth theme switch */
+  @apply bg-white text-gray-800 antialiased transition-colors duration-300;
   -webkit-font-smoothing: antialiased;
   -moz-osx-font-smoothing: grayscale;
-}
 
-/* ❌ removed duplicate font-smoothing */
+  position: relative;
+  overflow-x: hidden;
+}
 
 /* Dark */
 .dark body {
@@ -29,15 +30,59 @@ body {
 }
 
 /* ========================= */
+/* 🔥 GLOBAL BACKGROUND SYSTEM */
+/* ========================= */
+
+/* Grid Layer */
+body::before {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+
+  background-image:
+    linear-gradient(rgba(120,120,120,0.08) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(120,120,120,0.08) 1px, transparent 1px);
+  background-size: 50px 50px;
+}
+
+/* Glow Layer */
+body::after {
+  content: "";
+  position: fixed;
+  inset: 0;
+  z-index: -1;
+  pointer-events: none;
+
+  background:
+    radial-gradient(circle at 20% 20%, rgba(168,85,247,0.15), transparent 40%),
+    radial-gradient(circle at 80% 60%, rgba(99,102,241,0.15), transparent 40%);
+}
+
+/* Dark Mode Background */
+.dark body::before {
+  background-image:
+    linear-gradient(rgba(255,255,255,0.05) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255,255,255,0.05) 1px, transparent 1px);
+}
+
+.dark body::after {
+  background:
+    radial-gradient(circle at 20% 20%, rgba(168,85,247,0.12), transparent 40%),
+    radial-gradient(circle at 80% 60%, rgba(99,102,241,0.12), transparent 40%);
+}
+
+/* ========================= */
 /* 🔥 SMALL UI ENHANCEMENTS */
 /* ========================= */
 
-/* ✅ selection color */
+/* Selection */
 ::selection {
   @apply bg-purple-500 text-white;
 }
 
-/* ✅ scrollbar */
+/* Scrollbar */
 ::-webkit-scrollbar {
   width: 6px;
 }
@@ -50,7 +95,7 @@ body {
 }
 
 /* ========================= */
-/* 🔥 THEME TOKENS (KEEPED, BUT CLEANED) */
+/* 🔥 THEME TOKENS */
 /* ========================= */
 
 @theme inline {
@@ -61,8 +106,6 @@ body {
 
   --color-background: var(--background);
   --color-foreground: var(--foreground);
-
-  /* ❌ removed unused heavy tokens (sidebar, chart etc.) */
 
   --color-primary: var(--primary);
   --color-muted: var(--muted);
@@ -78,9 +121,7 @@ body {
   --background: oklch(1 0 0);
   --foreground: oklch(0.145 0 0);
 
-  /* 🔥 improved brand color */
   --primary: oklch(0.6 0.25 280);
-
   --muted: oklch(0.97 0 0);
 }
 
@@ -89,20 +130,20 @@ body {
 /* ========================= */
 
 .dark {
-  --background: oklch(0.13 0 0); /* slightly deeper */
+  --background: oklch(0.13 0 0);
   --foreground: oklch(0.98 0 0);
 
   --primary: oklch(0.75 0.25 280);
-
-  /* better for cards / sections */
   --muted: oklch(0.22 0 0);
 }
-/*  BASE LAYER */
 
+/* ========================= */
+/* 🔥 BASE LAYER */
+/* ========================= */
 
 @layer base {
   * {
-    @apply border-gray-200 dark:border-gray-700; 
+    @apply border-gray-200 dark:border-gray-700;
   }
 
   body {
@@ -111,17 +152,17 @@ body {
 }
 
 /* ========================= */
-/* 🔥 UTILITIES (NEW) */
+/* 🔥 UTILITIES */
 /* ========================= */
 
-/* Glass effect */
+/* Glass Effect */
 .glass {
   background: rgba(255, 255, 255, 0.05);
   backdrop-filter: blur(12px);
   border: 1px solid rgba(255, 255, 255, 0.1);
 }
 
-/* Gradient text */
+/* Gradient Text */
 .gradient-text {
   background: linear-gradient(90deg, #a855f7, #3b82f6);
   -webkit-background-clip: text;
@@ -134,7 +175,7 @@ body {
 
 .typing-text {
   overflow: hidden;
-  border-right: 2px solid currentColor; /* ✅ improved */
+  border-right: 2px solid currentColor;
   white-space: nowrap;
   width: 0;
   animation: typing 2s steps(30, end) forwards, blink .8s step-end infinite;
@@ -147,4 +188,194 @@ body {
 
 @keyframes blink {
   50% { border-color: transparent }
+}
+
+/* NAVBAR */
+.nav-glass {
+  backdrop-filter: blur(14px);
+  background: rgba(255, 255, 255, 0.6);
+  border-bottom: 1px solid rgba(200, 200, 200, 0.2);
+}
+
+.dark .nav-glass {
+  background: rgba(17, 24, 39, 0.6);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.08);
+}
+
+.nav-glow {
+  box-shadow: 0 8px 30px rgba(99, 102, 241, 0.15);
+}
+
+.nav-link::after {
+  content: "";
+  position: absolute;
+  left: 0;
+  bottom: -4px;
+  width: 0%;
+  height: 2px;
+  background: linear-gradient(to right, #6366f1, #a855f7);
+  transition: width 0.3s ease;
+}
+
+.nav-link:hover::after {
+  width: 100%;
+}
+
+.nav-active::after {
+  width: 100%;
+}
+
+/* ========================= */
+/* 🔥 FOOTER ENHANCEMENTS */
+/* ========================= */
+
+footer {
+  backdrop-filter: blur(10px);
+}
+
+/* subtle top border glow */
+footer::before {
+  content: "";
+  position: absolute;
+  top: 0;
+  left: 50%;
+  transform: translateX(-50%);
+  width: 60%;
+  height: 1px;
+  background: linear-gradient(to right, transparent, #6366f1, transparent);
+  opacity: 0.3;
+}
+
+/* ========================= */
+/* 🔥 HERO BACKGROUND UPGRADE */
+/* ========================= */
+
+/* Grid pattern */
+.bg-grid-pattern {
+  background-image: 
+    linear-gradient(to right, rgba(0,0,0,0.05) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(0,0,0,0.05) 1px, transparent 1px);
+  background-size: 40px 40px;
+}
+
+.dark .bg-grid-pattern {
+  background-image: 
+    linear-gradient(to right, rgba(255,255,255,0.06) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255,255,255,0.06) 1px, transparent 1px);
+}
+
+/* Apply grid to section automatically */
+section {
+  position: relative;
+}
+
+section::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  background: 
+    linear-gradient(to right, rgba(0,0,0,0.04) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(0,0,0,0.04) 1px, transparent 1px);
+  background-size: 40px 40px;
+  z-index: -20;
+}
+
+.dark section::before {
+  background: 
+    linear-gradient(to right, rgba(255,255,255,0.05) 1px, transparent 1px),
+    linear-gradient(to bottom, rgba(255,255,255,0.05) 1px, transparent 1px);
+}
+
+/* ========================= */
+/* 🔥 GLOW ENHANCEMENT */
+/* ========================= */
+
+section::after {
+  content: "";
+  position: absolute;
+  width: 500px;
+  height: 500px;
+  background: radial-gradient(circle, rgba(99,102,241,0.15), transparent 70%);
+  top: 10%;
+  left: 50%;
+  transform: translateX(-50%);
+  filter: blur(60px);
+  z-index: -10;
+  animation: floatGlow 6s ease-in-out infinite;
+}
+
+@keyframes floatGlow {
+  0%,100% { transform: translateX(-50%) translateY(0); }
+  50% { transform: translateX(-50%) translateY(20px); }
+}
+
+/* ========================= */
+/* 🔥 PROFILE IMAGE UPGRADE */
+/* ========================= */
+
+img {
+  transition: all 0.4s ease;
+}
+
+img:hover {
+  transform: scale(1.05);
+}
+
+/* subtle glow around profile */
+img {
+  box-shadow: 0 0 0 rgba(99,102,241,0.0);
+}
+
+img:hover {
+  box-shadow: 0 0 25px rgba(99,102,241,0.4);
+}
+
+/* ========================= */
+/* 🔥 BUTTON PREMIUM */
+/* ========================= */
+
+a[href="/projects"] {
+  box-shadow: 0 8px 25px rgba(0,0,0,0.15);
+}
+
+a[href="/projects"]:hover {
+  box-shadow: 0 12px 30px rgba(99,102,241,0.4);
+}
+
+/* ========================= */
+/* 🔥 BADGES ENHANCEMENT */
+/* ========================= */
+
+span {
+  transition: all 0.3s ease;
+}
+
+span:hover {
+  transform: translateY(-2px);
+}
+
+/* ========================= */
+/* 🔥 SOCIAL ICONS */
+/* ========================= */
+
+a:hover {
+  transform: translateY(-2px);
+}
+
+/* ========================= */
+/* 🔥 TEXT GRADIENT (NAME) */
+/* ========================= */
+
+h1 span {
+  background: linear-gradient(90deg, #6366f1, #a855f7, #ec4899);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+}
+
+/* ========================= */
+/* 🔥 SMOOTH UI */
+/* ========================= */
+
+* {
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
