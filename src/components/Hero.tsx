@@ -1,7 +1,7 @@
 "use client";
 
 import Image from "next/image";
-import { useState, useEffect,useMemo } from "react";
+import { useState, useEffect, useMemo } from "react";
 import { motion, Variants, AnimatePresence } from "framer-motion";
 import Link from "next/link";
 import {
@@ -16,22 +16,23 @@ import {
 
 export default function Hero() {
   const roles = useMemo(
-  () => [
-    "Full-Stack Developer",
-    "Building Scalable & AI-Powered Products",
-  ],
-  []
-);
+    () => [
+      "Full-Stack Engineer (MERN & Next.js)",
+      "Building Scalable, AI-Driven Products",
+      "Turning Ideas into Production Systems",
+    ],
+    []
+  );
 
   const [index, setIndex] = useState(0);
 
   useEffect(() => {
-  const interval = setInterval(() => {
-    setIndex((prev) => (prev + 1) % roles.length);
-  }, 2500);
+    const interval = setInterval(() => {
+      setIndex((prev) => (prev + 1) % roles.length);
+    }, 2500);
 
-  return () => clearInterval(interval);
-}, [roles.length]);
+    return () => clearInterval(interval);
+  }, [roles.length]);
 
   const container: Variants = {
     hidden: { opacity: 0 },
@@ -173,7 +174,7 @@ export default function Hero() {
             href="/contact"
             className="w-full sm:w-auto px-5 py-3 flex items-center justify-center gap-2 rounded-md border border-gray-300 dark:border-gray-700 hover:bg-gray-100 dark:hover:bg-gray-800 transition"
           >
-            <Mail size={18} /> Hire Me
+            <Mail size={18} /> Let’s Work Together
           </Link>
 
           <a
@@ -181,7 +182,7 @@ export default function Hero() {
             download
             className="w-full sm:w-auto px-5 py-3 flex items-center justify-center gap-2 border border-gray-300 dark:border-gray-700 rounded-md hover:bg-gray-100 dark:hover:bg-gray-800 transition"
           >
-            <FileText size={18} /> Resume
+            <FileText size={18} /> Download Resume
           </a>
         </motion.div>
 
@@ -210,17 +211,30 @@ export default function Hero() {
         <motion.div
           variants={item}
           className="mt-8 sm:mt-10 flex flex-col items-center gap-3 text-xs sm:text-sm text-gray-500 dark:text-gray-400"
-        >
-          <div className="flex items-center gap-2 text-xs sm:text-sm text-gray-500 dark:text-gray-400">
-            <Sparkles size={14} />
-            <span>Engineering scalable & production-grade applications</span>
+        ><div className="flex flex-wrap items-center justify-center gap-2 text-xs sm:text-sm text-gray-500 dark:text-gray-400 text-center max-w-xs sm:max-w-md md:max-w-lg mx-auto">
+            <Sparkles size={14} className="text-indigo-500 shrink-0" />
+            <span className="leading-relaxed">
+              Engineering <span className="font-medium text-gray-800 dark:text-gray-200">scalable</span> &{" "}
+              <span className="font-medium text-gray-800 dark:text-gray-200">production-grade</span> applications
+            </span>
           </div>
 
           {/* Divider */}
           <div className="w-12 h-[1px] bg-gray-300 dark:bg-gray-700"></div>
 
-          <p className="text-xs sm:text-sm text-gray-600 dark:text-gray-300 mt-2 font-medium">
-            Actively open to freelance, full-time & remote opportunities
+          <p className="mt-3 text-xs sm:text-sm text-gray-600 dark:text-gray-300 font-medium text-center max-w-xs sm:max-w-md md:max-w-lg mx-auto leading-relaxed">
+            Actively open to{" "}
+            <span className="text-indigo-600 dark:text-indigo-400 font-semibold">
+              freelance
+            </span>
+            ,{" "}
+            <span className="text-indigo-600 dark:text-indigo-400 font-semibold">
+              full-time
+            </span>{" "}
+            &{" "}
+            <span className="text-indigo-600 dark:text-indigo-400 font-semibold">
+              remote opportunities
+            </span>
           </p>
         </motion.div>
 

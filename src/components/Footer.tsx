@@ -1,6 +1,6 @@
 "use client";
 
-import { Github, Linkedin, Mail } from "lucide-react";
+import { Github, Linkedin, Mail, Heart } from "lucide-react";
 import { motion } from "framer-motion";
 
 export default function Footer() {
@@ -53,15 +53,20 @@ export default function Footer() {
 
       {/* Footer Note */}
       <motion.p
-        className="text-xs text-gray-500 dark:text-gray-400 mt-5 text-center tracking-wide"
+        className="mt-6 text-xs sm:text-sm text-gray-500 dark:text-gray-400 text-center tracking-wide leading-relaxed max-w-xs sm:max-w-md mx-auto flex items-center justify-center gap-1 flex-wrap"
         initial={{ opacity: 0 }}
         animate={{ opacity: 1 }}
         transition={{ delay: 0.5, duration: 0.6 }}
       >
-        Designed & Built with ❤️ by{" "}
-        <span className="font-semibold text-indigo-600 hover:text-indigo-500 transition">
-          <a href="mailto:kunalkumarofficial31@gmail.com">Kunal Kumar</a>
-        </span>
+        Designed & built with
+        <Heart size={14} className="text-red-500" />
+        by{" "}
+        <a
+          href="mailto:kunalkumarofficial31@gmail.com"
+          className="font-semibold text-indigo-600 hover:text-indigo-500 transition"
+        >
+          Kunal Kumar
+        </a>
       </motion.p>
 
     </footer>

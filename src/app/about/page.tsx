@@ -10,7 +10,7 @@ import {
     Smartphone,
     CheckCircle,
     Puzzle,
-    Hand, Briefcase, MapPin, Calendar, Sparkles
+    Hand, Briefcase, MapPin, Calendar, Sparkles, GraduationCap, BadgeCheck,
 } from "lucide-react";
 
 export default function About() {
@@ -127,6 +127,139 @@ export default function About() {
                             <div className="absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100 bg-gradient-to-r from-indigo-500/10 to-purple-500/10 transition"></div>
                         </motion.div>
                     ))}
+                </div>
+            </motion.div>
+
+            {/* ================= EDUCATION ================= */}
+            <motion.div className="mt-32" initial="hidden" animate="show" variants={fadeUp}>
+
+                {/* Title */}
+                <div className="text-center mb-20">
+                    <h2 className="text-4xl sm:text-5xl font-extrabold bg-gradient-to-r from-indigo-600 via-purple-600 to-pink-600 bg-clip-text text-transparent">
+                        Education & Foundation
+                    </h2>
+                    <p className="mt-4 text-gray-500 dark:text-gray-400 max-w-2xl mx-auto text-base sm:text-lg">
+                        A strong academic background combined with hands-on development experience,
+                        shaping my journey into a professional full-stack developer.
+                    </p>
+                </div>
+
+                {/* Timeline */}
+                <div className="relative max-w-5xl mx-auto">
+
+                    {/* Vertical Line */}
+                    <div className="absolute left-5 top-0 bottom-0 w-[2px] bg-gradient-to-b from-indigo-500 via-purple-500 to-pink-500 rounded-full hidden md:block" />
+
+                    <div className="space-y-16">
+
+                        {[
+                            {
+                                degree: "Bachelor of Computer Applications (BCA)",
+                                institute: "GIIT Professional College, Kolhan University (KU)",
+                                location: "Jamshedpur, Jharkhand, India",
+                                period: "2021 – 2024",
+                                highlight: "Full Stack Engineering",
+                                points: [
+                                    "Delivered 8+ production-grade full-stack applications using MERN & Next.js",
+                                    "Built scalable REST APIs and optimized backend performance for real-world workloads",
+                                    "Applied Data Structures, Algorithms & system design to solve complex problems efficiently",
+                                    "Implemented real-time features (WebSockets) and AI-powered integrations in projects",
+                                    "Followed industry standards: modular architecture, reusable components & clean code practices"
+                                ]
+                            },
+                            {
+                                degree: "Intermediate (12th)",
+                                institute: "RMK Inter School",
+                                location: "Banka, Bihar, India",
+                                period: "2019 – 2021",
+                                highlight: "Analytical & Logical Foundation",
+                                points: [
+                                    "Developed strong analytical thinking and structured problem-solving mindset",
+                                    "Built core fundamentals in mathematics and logic relevant to programming",
+                                    "Initiated journey into technology and computer science concepts"
+                                ]
+                            },
+                            {
+                                degree: "Matriculation (10th)",
+                                institute: "RMK Inter School",
+                                location: "Banka, Bihar, India",
+                                period: "2018 – 2019",
+                                highlight: "Academic Excellence",
+                                points: [
+                                    "Maintained consistent academic performance with disciplined learning approach",
+                                    "Strengthened foundational knowledge across science, mathematics & reasoning",
+                                    "Gained early exposure to computers, sparking interest in development"
+                                ]
+                            }
+                        ].map((edu, i) => (
+                            <motion.div
+                                key={i}
+                                className="relative md:pl-20"
+                                custom={i}
+                                initial="hidden"
+                                animate="show"
+                                variants={fadeUp}
+                            >
+                                {/* Icon */}
+                                <div className="hidden md:flex absolute left-0 top-5 w-12 h-12 rounded-full bg-gradient-to-br from-indigo-600 via-purple-600 to-pink-600 text-white items-center justify-center shadow-lg">
+                                    <GraduationCap size={22} />
+                                </div>
+
+                                {/* Card */}
+                                <div className="group backdrop-blur-md bg-white/80 dark:bg-gray-800/80 p-8 sm:p-10 rounded-2xl shadow-xl border border-gray-200 dark:border-gray-700 hover:shadow-indigo-500/20 hover:shadow-2xl hover:-translate-y-2 transition duration-300">
+
+                                    {/* Header */}
+                                    <div className="flex flex-wrap items-center justify-between gap-3">
+                                        <h3 className="text-2xl sm:text-3xl font-bold text-indigo-600 dark:text-indigo-400">
+                                            {edu.degree}
+                                        </h3>
+
+                                        <span className="flex items-center gap-1 text-xs font-semibold bg-indigo-100 text-indigo-700 px-3 py-1 rounded-full">
+                                            <BadgeCheck size={14} />
+                                            {edu.highlight}
+                                        </span>
+                                    </div>
+
+                                    {/* Institute */}
+                                    <p className="mt-2 text-lg font-semibold text-gray-800 dark:text-gray-200">
+                                        {edu.institute}
+                                    </p>
+
+                                    {/* Meta Info */}
+                                    <div className="flex flex-wrap gap-6 mt-4 text-sm text-gray-500 dark:text-gray-400">
+
+                                        <span className="flex items-center gap-2">
+                                            <MapPin size={16} />
+                                            {edu.location}
+                                        </span>
+
+                                        <span className="flex items-center gap-2">
+                                            <Calendar size={16} />
+                                            {edu.period}
+                                        </span>
+
+                                    </div>
+
+                                    {/* Divider */}
+                                    <div className="mt-5 h-[1px] w-full bg-gradient-to-r from-transparent via-gray-300 dark:via-gray-600 to-transparent"></div>
+
+                                    {/* Points */}
+                                    <ul className="mt-6 space-y-3 text-gray-600 dark:text-gray-300">
+                                        {edu.points.map((point, idx) => (
+                                            <li key={idx} className="flex gap-3 leading-relaxed">
+                                                <span className="text-indigo-500 mt-1">•</span>
+                                                {point}
+                                            </li>
+                                        ))}
+                                    </ul>
+
+                                    {/* Hover Glow */}
+                                    <div className="absolute inset-0 rounded-2xl opacity-0 group-hover:opacity-100 bg-gradient-to-r from-indigo-500/10 via-purple-500/10 to-pink-500/10 transition"></div>
+                                </div>
+                            </motion.div>
+                        ))}
+
+                    </div>
                 </div>
             </motion.div>
 
