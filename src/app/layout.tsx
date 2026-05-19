@@ -60,7 +60,7 @@ export const metadata = {
   },
 
   verification: {
-  google: "W4q13Q-gQvl17lzzTd49c7-5soIu1n_h7KEzwYdzl5Q",
+  google: "",
 },
 };
 
