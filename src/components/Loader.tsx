@@ -16,7 +16,7 @@ export default function Loader() {
         }
         return p + 5
       })
-    }, 90)
+    }, 98)
     return () => clearInterval(timer)
   }, [])
 
@@ -24,7 +24,7 @@ export default function Loader() {
   useEffect(() => {
     const dotTimer = setInterval(() => {
       setDots((d) => (d.length >= 3 ? "" : d + "."))
-    }, 400)
+    }, 600)
     return () => clearInterval(dotTimer)
   }, [])
 
