@@ -130,6 +130,134 @@ export default function About() {
                 </div>
             </motion.div>
 
+            {/*  Work Experience Section */}
+            <motion.div className="mt-32" initial="hidden" animate="show" variants={fadeUp}>
+
+                {/* Title */}
+                <div className="text-center mb-16">
+                    <h2 className="text-4xl sm:text-5xl font-extrabold bg-gradient-to-r from-indigo-600 to-purple-600 bg-clip-text text-transparent">
+                        My Professional Journey
+                    </h2>
+                    <p className="mt-4 text-gray-500 dark:text-gray-400 max-w-2xl mx-auto">
+                        A timeline of my growth building scalable, high-performance web applications and real-world products.
+                    </p>
+                </div>
+
+                {/* Timeline wrapper */}
+                <div className="relative max-w-5xl mx-auto">
+
+                    {/* Glowing vertical timeline */}
+                    <div className="absolute left-4 top-0 bottom-0 w-1 bg-gradient-to-b from-indigo-500 via-purple-500 to-pink-500 rounded-full hidden md:block blur-[1px]" />
+
+                    <div className="space-y-14">
+                        {[
+                            {
+                                role: "Software Engineer",
+                                company: "AlphaZero Software Solutions",
+                                location: "Bengaluru, India",
+                                period: "Mar 2026 – Present",
+                                current: true,
+                                points: [
+                                    "Architecting high-performance Next.js applications and reusable component systems",
+                                    "Improving SEO & Core Web Vitals for production apps",
+                                    "Collaborating with Agile teams to ship scalable features faster"
+                                ]
+                            },
+                            {
+                                role: "Programmer Analyst",
+                                company: "CepiaLabs Pvt. Ltd.",
+                                location: "Noida, India",
+                                period: "Aug 2025 – Mar 2026",
+                                points: [
+                                    "Developed scalable MERN applications for production environments",
+                                    "Optimized APIs → reduced response time by 30%",
+                                    "Improved system reliability and performance"
+                                ]
+                            },
+                            {
+                                role: "Full Stack Developer Intern",
+                                company: "Code Core Global",
+                                location: "Jaipur, India",
+                                period: "May 2025 – Aug 2025",
+                                points: [
+                                    "Built real-time apps using MERN + Socket.io",
+                                    "Improved load speed and UI responsiveness",
+                                    "Enhanced engagement and UX across platforms"
+                                ]
+                            },
+                            {
+                                role: "Associate L1 Intern",
+                                company: "INFOTECT SOLUTIONS",
+                                location: "Bengaluru, India",
+                                period: "Feb 2025 – May 2025",
+                                points: [
+                                    "Worked on secure REST APIs and AI integrations",
+                                    "Streamlined backend workflows",
+                                    "Improved responsive frontend usability"
+                                ]
+                            },
+                        ].map((exp, i) => (
+                            <motion.div
+                                key={i}
+                                className="relative md:pl-16"
+                                custom={i}
+                                initial="hidden"
+                                animate="show"
+                                variants={fadeUp}
+                            >
+                                {/* Timeline Icon */}
+                                <div className="hidden md:flex absolute left-0 top-3 w-10 h-10 rounded-full bg-gradient-to-br from-indigo-600 to-purple-600 text-white items-center justify-center shadow-lg shadow-indigo-500/30">
+                                    <Briefcase size={18} />
+                                </div>
+
+                                {/* Card */}
+                                <div className="group backdrop-blur-sm bg-white/80 dark:bg-gray-800/80 p-8 rounded-2xl shadow-xl border border-gray-200 dark:border-gray-700 hover:shadow-indigo-500/20 hover:shadow-2xl hover:-translate-y-2 transition duration-300">
+
+                                    {/* Role + Current badge */}
+                                    <div className="flex flex-wrap items-center gap-3">
+                                        <h3 className="text-2xl font-bold text-indigo-600 dark:text-indigo-400">
+                                            {exp.role}
+                                        </h3>
+
+                                        {exp.current && (
+                                            <span className="flex items-center gap-1 text-xs bg-green-100 text-green-700 px-3 py-1 rounded-full font-semibold">
+                                                <Sparkles size={12} /> Current
+                                            </span>
+                                        )}
+                                    </div>
+
+                                    {/* Company */}
+                                    <p className="mt-1 text-lg font-semibold text-gray-800 dark:text-gray-200">
+                                        {exp.company}
+                                    </p>
+
+                                    {/* Meta */}
+                                    <div className="flex flex-wrap gap-5 mt-3 text-sm text-gray-500 dark:text-gray-400">
+                                        <span className="flex items-center gap-1">
+                                            <MapPin size={15} /> {exp.location}
+                                        </span>
+                                        <span className="flex items-center gap-1">
+                                            <Calendar size={15} /> {exp.period}
+                                        </span>
+                                    </div>
+
+                                    {/* Achievements */}
+                                    <ul className="mt-5 space-y-3 text-gray-600 dark:text-gray-300">
+                                        {exp.points.map((point, idx) => (
+                                            <li key={idx} className="flex gap-3">
+                                                <span className="text-indigo-500 mt-1">✦</span>
+                                                {point}
+                                            </li>
+                                        ))}
+                                    </ul>
+
+                                </div>
+                            </motion.div>
+                        ))}
+                    </div>
+                </div>
+            </motion.div>
+
             {/* ================= EDUCATION ================= */}
             <motion.div className="mt-32" initial="hidden" animate="show" variants={fadeUp}>
 
@@ -259,134 +387,6 @@ export default function About() {
                             </motion.div>
                         ))}
 
-                    </div>
-                </div>
-            </motion.div>
-
-            {/*  Work Experience Section */}
-            <motion.div className="mt-32" initial="hidden" animate="show" variants={fadeUp}>
-
-                {/* Title */}
-                <div className="text-center mb-16">
-                    <h2 className="text-4xl sm:text-5xl font-extrabold bg-gradient-to-r from-indigo-600 to-purple-600 bg-clip-text text-transparent">
-                        My Professional Journey
-                    </h2>
-                    <p className="mt-4 text-gray-500 dark:text-gray-400 max-w-2xl mx-auto">
-                        A timeline of my growth building scalable, high-performance web applications and real-world products.
-                    </p>
-                </div>
-
-                {/* Timeline wrapper */}
-                <div className="relative max-w-5xl mx-auto">
-
-                    {/* Glowing vertical timeline */}
-                    <div className="absolute left-4 top-0 bottom-0 w-1 bg-gradient-to-b from-indigo-500 via-purple-500 to-pink-500 rounded-full hidden md:block blur-[1px]" />
-
-                    <div className="space-y-14">
-                        {[
-                            {
-                                role: "Software Engineer",
-                                company: "AlphaZero Software Solutions",
-                                location: "Bengaluru, India",
-                                period: "Mar 2026 – Present",
-                                current: true,
-                                points: [
-                                    "Architecting high-performance Next.js applications and reusable component systems",
-                                    "Improving SEO & Core Web Vitals for production apps",
-                                    "Collaborating with Agile teams to ship scalable features faster"
-                                ]
-                            },
-                            {
-                                role: "Programmer Analyst",
-                                company: "CepiaLabs Pvt. Ltd.",
-                                location: "Noida, India",
-                                period: "Aug 2025 – Mar 2026",
-                                points: [
-                                    "Developed scalable MERN applications for production environments",
-                                    "Optimized APIs → reduced response time by 30%",
-                                    "Improved system reliability and performance"
-                                ]
-                            },
-                            {
-                                role: "Full Stack Developer Intern",
-                                company: "Code Core Global",
-                                location: "Jaipur, India",
-                                period: "May 2025 – Aug 2025",
-                                points: [
-                                    "Built real-time apps using MERN + Socket.io",
-                                    "Improved load speed and UI responsiveness",
-                                    "Enhanced engagement and UX across platforms"
-                                ]
-                            },
-                            {
-                                role: "Associate L1 Intern",
-                                company: "INFOTECT SOLUTIONS",
-                                location: "Bengaluru, India",
-                                period: "Feb 2025 – May 2025",
-                                points: [
-                                    "Worked on secure REST APIs and AI integrations",
-                                    "Streamlined backend workflows",
-                                    "Improved responsive frontend usability"
-                                ]
-                            },
-                        ].map((exp, i) => (
-                            <motion.div
-                                key={i}
-                                className="relative md:pl-16"
-                                custom={i}
-                                initial="hidden"
-                                animate="show"
-                                variants={fadeUp}
-                            >
-                                {/* Timeline Icon */}
-                                <div className="hidden md:flex absolute left-0 top-3 w-10 h-10 rounded-full bg-gradient-to-br from-indigo-600 to-purple-600 text-white items-center justify-center shadow-lg shadow-indigo-500/30">
-                                    <Briefcase size={18} />
-                                </div>
-
-                                {/* Card */}
-                                <div className="group backdrop-blur-sm bg-white/80 dark:bg-gray-800/80 p-8 rounded-2xl shadow-xl border border-gray-200 dark:border-gray-700 hover:shadow-indigo-500/20 hover:shadow-2xl hover:-translate-y-2 transition duration-300">
-
-                                    {/* Role + Current badge */}
-                                    <div className="flex flex-wrap items-center gap-3">
-                                        <h3 className="text-2xl font-bold text-indigo-600 dark:text-indigo-400">
-                                            {exp.role}
-                                        </h3>
-
-                                        {exp.current && (
-                                            <span className="flex items-center gap-1 text-xs bg-green-100 text-green-700 px-3 py-1 rounded-full font-semibold">
-                                                <Sparkles size={12} /> Current
-                                            </span>
-                                        )}
-                                    </div>
-
-                                    {/* Company */}
-                                    <p className="mt-1 text-lg font-semibold text-gray-800 dark:text-gray-200">
-                                        {exp.company}
-                                    </p>
-
-                                    {/* Meta */}
-                                    <div className="flex flex-wrap gap-5 mt-3 text-sm text-gray-500 dark:text-gray-400">
-                                        <span className="flex items-center gap-1">
-                                            <MapPin size={15} /> {exp.location}
-                                        </span>
-                                        <span className="flex items-center gap-1">
-                                            <Calendar size={15} /> {exp.period}
-                                        </span>
-                                    </div>
-
-                                    {/* Achievements */}
-                                    <ul className="mt-5 space-y-3 text-gray-600 dark:text-gray-300">
-                                        {exp.points.map((point, idx) => (
-                                            <li key={idx} className="flex gap-3">
-                                                <span className="text-indigo-500 mt-1">✦</span>
-                                                {point}
-                                            </li>
-                                        ))}
-                                    </ul>
-
-                                </div>
-                            </motion.div>
-                        ))}
                     </div>
                 </div>
             </motion.div>
