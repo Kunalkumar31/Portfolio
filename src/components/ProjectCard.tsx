@@ -1,6 +1,8 @@
 'use client'
 
 import { motion } from 'framer-motion'
+import Link from "next/link";
+import { Github, ExternalLink } from "lucide-react";
 
 export default function ProjectCard({
   project,
@@ -49,25 +51,77 @@ export default function ProjectCard({
       <div className="flex gap-3 mt-5 text-sm">
 
         {project.github && (
-          <a
+          <Link
             href={project.github}
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-1 px-3 py-1.5 rounded-md border border-gray-300 dark:border-gray-700 text-gray-700 dark:text-gray-300 hover:bg-gray-900 hover:text-white dark:hover:bg-white dark:hover:text-black transition font-medium"
+            aria-label={`View ${project.title} source code on GitHub`}
+            className="
+    inline-flex
+    items-center
+    gap-2
+    px-3
+    py-1.5
+    rounded-md
+    border
+    border-gray-300
+    dark:border-gray-700
+    text-gray-700
+    dark:text-gray-300
+    hover:bg-gray-900
+    hover:text-white
+    dark:hover:bg-white
+    dark:hover:text-black
+    transition
+    font-medium
+    focus-visible:outline-none
+    focus-visible:ring-2
+    focus-visible:ring-indigo-500
+    "
           >
-            GitHub ↗
-          </a>
+            <Github size={16} />
+
+            <span>GitHub</span>
+
+            <ExternalLink
+              size={14}
+              aria-hidden="true"
+            />
+
+          </Link>
         )}
 
         {project.live && (
-          <a
+          <Link
             href={project.live}
             target="_blank"
             rel="noopener noreferrer"
-            className="inline-flex items-center gap-1 px-3 py-1.5 rounded-md bg-green-500/10 text-green-600 dark:text-green-400 border border-green-500/30 hover:bg-green-500/20 hover:border-green-500/50 hover:text-green-700 dark:hover:text-green-300 transition font-medium"
+            aria-label={`Open live demo of ${project.title}`}
+            className="
+    inline-flex
+    items-center
+    gap-2
+    px-3
+    py-1.5
+    rounded-md
+    bg-green-500/10
+    text-green-600
+    dark:text-green-400
+    border
+    border-green-500/30
+    hover:bg-green-500/20
+    transition
+    font-medium
+    focus-visible:outline-none
+    focus-visible:ring-2
+    focus-visible:ring-green-500
+    "
           >
-            Live Demo ↗
-          </a>
+            <ExternalLink size={14} />
+
+            <span>Live Demo</span>
+
+          </Link>
         )}
 
       </div>

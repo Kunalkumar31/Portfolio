@@ -104,7 +104,7 @@ export default function Hero() {
           <span className="font-semibold text-gray-900 dark:text-white">
             AI-powered systems
           </span>{" "}
-          that solve real-world problems — from idea to production.
+          that solve real-world problems from idea to production.
         </motion.p>
 
         {/* Trust Badges */}
@@ -119,7 +119,7 @@ export default function Hero() {
 
           <span className="flex items-center gap-1.5 px-3 py-1.5 rounded-full border border-gray-300 dark:border-gray-700 text-gray-600 dark:text-gray-300">
             <Rocket size={14} />
-            10+ Projects Built
+            20+ Projects Built
           </span>
 
           <span className="flex items-center gap-1.5 px-3 py-1.5 rounded-full border border-gray-300 dark:border-gray-700 text-gray-600 dark:text-gray-300">
